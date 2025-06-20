@@ -1,13 +1,32 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>TowerMarketApp</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+<!DOCTYPE html>
+<html lang="en-Br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Izunwanne Victor A.E" />
+    <meta name="description" content="" />
+
+    <title>Esfam Market</title>
+    <base href="/" />
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <button type="button" id="menu-btn">
+        <img src="assets/icons/menu-icon-black.svg" height="30px" />
+      </button>
+      <p>Esfam Market</p>
+      <div class="header-btns">
+        <button type="button">
+          <img src="assets/icons/search-black.svg" height="30px" />
+        </button>
+        <button type="button">Cart <span id="cart-count">0</span></button>
+      </div>
+    </header>
+
+    <main><app-root></app-root></main>
+
+    <footer>&copy; All Rights Reserved. | Esfam Market 2025</footer>
+  </body>
 </html>
