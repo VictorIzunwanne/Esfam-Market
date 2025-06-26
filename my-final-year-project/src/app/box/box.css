@@ -1,0 +1,11 @@
+.product-box {
+	inline-size: 25rem;
+	background-color: lightblue;
+	block-size: 80vh;
+	padding: 1rem;
+	overflow: scroll;
+}
+
+.product-box::-webkit-scrollbar {
+	display: none;
+}

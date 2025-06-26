@@ -1,7 +1,73 @@
 .main {
-  min-block-size: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.nav-shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #00000050;
+  bottom: 0;
+  display: none; /* flex */
+  overflow: hidden;
+}
+
+.blurred {
+  display: flex;
+  z-index: 2;
+}
+
+.hidden {
+  overflow: hidden;
+}
+
+nav,
+.cart-section {
+  position: fixed;
+  top: 4rem;
+  bottom: 0;
+  inline-size: 0;
+  background-color: var(--color);
+  color: var(--secondary-color);
+  backdrop-filter: blur(0.2rem);
+  transition: all 0.1s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+nav {
+  left: 0;
+}
+
+.nav-links {
+  margin-block-start: 4rem;
+  padding: 1rem;
+  flex: 1;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.nav-links li {
+  inline-size: 100%;
+  block-size: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+.open {
+  inline-size: 20rem;
 }
 
 header {
@@ -10,13 +76,16 @@ header {
   block-size: 4rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding-inline: 1rem;
   position: sticky;
   top: 0;
+  z-index: 4;
 }
 
-header p {
-  font-weight: bold;
+h1 {
+  font-size: 1.5rem;
+  color: var(--color);
 }
 
 #menu-btn {
@@ -27,7 +96,6 @@ header p {
 }
 
 #header-btns {
-  flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -37,42 +105,100 @@ header p {
 #header-btns button {
   cursor: pointer;
   background-color: var(--glass-background);
-  padding: 0.5rem;
-	transition: all 0.25s;
+  padding: 0.4rem;
+  transition: all 0.25s;
 }
 
 #header-btns button:hover {
-	filter: drop-shadow(0 0 0.1rem #00000013);
+  filter: drop-shadow(0 0 0.1rem #00000013);
 }
 
-#cart {
-	display: flex;
-	gap: 0.2rem;
-	align-items: center;
+#cart,
+.search-btn {
+  block-size: 2.5rem;
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
 }
 
 #cart span {
-	background-color: var(--color);
-	display: block;
-	inline-size: 1rem;
-	block-size: 1rem;
-	color: var(--secondary-color);
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  background-color: var(--color);
+  display: block;
+  padding-inline: 0.4rem;
+  block-size: 1.4rem;
+  color: var(--secondary-color);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+search {
+  background-color: var(--color);
+  position: fixed;
+  top: 4rem;
+  right: 0;
+  left: 0;
+  block-size: 0rem;
+  overflow: hidden;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+  border-bottom: 1px solid #fff;
+}
+
+search form {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+search form input {
+  flex: 1;
+  border: none;
+  font-size: 1rem;
+  background-color: transparent;
+  color: var(--secondary-color);
+  outline: none;
+}
+
+search form input::placeholder {
+  color: var(--greyed-text-color);
+}
+
+search form button {
+  block-size: 2.5rem;
+  padding-inline: 2rem;
+  color: var(--color);
+  cursor: pointer;
+  transition: all 0.25s;
 }
 
 main {
-  flex: 1;
-  padding: 1rem;
+  min-block-size: calc(100vh - 7rem);
 }
 
 footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
   padding: 1rem;
-  background-color: var(--color);
-  color: var(--greyed-text-color);
+  background-color: var(--background-color);
+  color: var(--color);
 }
+
+@media screen and (max-width: 400px) {
+  #header-btns {
+    flex: 1;
+  }
+}
+
+/* .cart-section {
+  right: 0;
+  inline-size: 20rem;
+  background-color: var(--color);
+  display: flex;
+  align-items: center;
+} */

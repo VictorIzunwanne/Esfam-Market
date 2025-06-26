@@ -1,15 +1,84 @@
 <div class="main">
+  <div class="nav-shadow"></div>
+  <nav>
+    <div class="nav-links">
+      <ul>
+        <li routerLink="" (click)="closeMenu()">Home</li>
+        <li routerLink="/product" (click)="closeMenu()">Products</li>
+        <li routerLink="/about" (click)="closeMenu()">About</li>
+        <li routerLink="/sell" (click)="closeMenu()">Sell</li>
+        <li routerLink="/account" (click)="closeMenu()">Account</li>
+      </ul>
+    </div>
+    <footer>Developed by: Izunwanne Victor</footer>
+  </nav>
+
   <header>
-    <button type="button" id="menu-btn"><img src="assets/icons/menu-icon-black.svg" height="30px" /></button>
-    <p>Esfam Market</p>
+    <button type="button" id="menu-btn" (click)="openMenu()">
+      <img src="assets/icons/menu-icon-black.svg" height="30px" />
+    </button>
+    <h1>Esfam Market</h1>
 
     <div id="header-btns">
-      <button type="button" class="search-btn"><img src="assets/icons/search-black.svg"></button>
-      <button type="button" id="cart">Cart <span id="cart-count">0</span></button>
+      <button type="button" class="search-btn" (click)="openSearch()">
+        <img src="assets/icons/search-black.svg" height="20px" />
+      </button>
+      <button type="button" id="cart">
+        <!-- Maximum cart number should be 50 -->
+        Cart <span id="cart-count">0</span>
+      </button>
     </div>
   </header>
 
-  <main><router-outlet></router-outlet></main>
+  <search class="search">
+    <form class="search-product-form">
+      <input
+        type="text"
+        name="search-bar"
+        id="search-bar"
+        placeholder="Find Products"
+        maxlength="50"
+        required
+      />
+      <button type="submit">Search</button>
+    </form>
+  </search>
+
+  <main>
+    <router-outlet></router-outlet>
+
+    <div class="cart-shadow">
+      <div class="cart-section">
+        <div class="heading"></div>
+
+        <div class="products"></div>
+        <h2>Cart</h2>
+      </div>
+    </div>
+  </main>
 
   <footer>&copy;All rights reserved. | Esfam Market 2025</footer>
 </div>
+
+<!-- <div class="balls-container">
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+  <div class="balls"></div>
+</div> -->

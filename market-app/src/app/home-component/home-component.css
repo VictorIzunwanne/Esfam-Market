@@ -1,0 +1,309 @@
+.sections {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+section {
+  background-color: #00000013;
+  padding: 0.5rem;
+  border: 1px solid var(--background-color);
+  border-radius: 1rem;
+}
+
+.with-padding {
+  padding: 5rem;
+  text-align: center;
+  align-items: center;
+}
+
+.cta-section {
+  min-block-size: calc(100vh - 6rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section h2,
+.cta-section h3 {
+  font-size: 2rem;
+}
+.cta-section > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-write-up > div,
+.cta-product > div {
+  min-inline-size: 20rem;
+  max-inline-size: 30rem;
+}
+
+.cta-write-up > div {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.category-write-up {
+  max-inline-size: 50rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  .cta-write-up > div {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.see-all-btn {
+  background-color: var(--color);
+  color: var(--background-color);
+  border: 1px solid var(--color);
+  border-radius: 2rem;
+  inline-size: 12rem;
+  block-size: 2.5rem;
+  transition: all 0.25s;
+}
+
+.see-all-btn:hover {
+  background-color: var(--background-color);
+  color: var(--color);
+}
+
+.cta-product-detail > div {
+  padding: 0.1rem 0;
+}
+
+.cta-product-card {
+  background: url("../../../public/assets/photos/headphones.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  inline-size: 50%;
+  block-size: 10rem;
+  justify-self: center;
+}
+
+.cta-product-detail {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  margin-block-start: 1rem;
+}
+
+.cta-product-name {
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 900px) {
+  .cta-product-card {
+    transform: rotate(45deg);
+    scale: 1.5;
+    position: absolute;
+    top: 7rem;
+    right: -15rem;
+    inline-size: 100%;
+    block-size: 20rem;
+    animation: infinite bounce 3s;
+  }
+
+  @keyframes bounce {
+    0% {
+      top: 5rem;
+    }
+
+    50% {
+      top: 7rem;
+    }
+
+    100% {
+      top: 5rem;
+    }
+  }
+
+  .cta-product-detail {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--glass-background);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: 1rem;
+  }
+}
+
+.cta-product-price {
+  font-size: 1rem;
+}
+
+.cta-product-btns {
+  display: flex;
+  gap: 1rem;
+}
+
+#see-all-trending-product-btn,
+.cta-product-btns button {
+  background-color: var(--background-color);
+  border: 1px solid var(--color);
+  border-radius: 2.5rem;
+  inline-size: 8rem;
+  block-size: 2.5rem;
+  transition: all 0.25s;
+}
+
+#see-all-trending-product-btn:hover,
+.cta-product-btns button:hover {
+  background-color: var(--color);
+  color: var(--background-color);
+}
+
+@media screen and (min-width: 600px) {
+  .cta-product > div {
+    min-inline-size: 30rem;
+  }
+}
+
+.category-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.with-padding h3 {
+  color: red;
+}
+
+.category-containers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.category-containers > div {
+  background-color: var(--background-color);
+  filter: drop-shadow(0 0 0.1rem #0000002f);
+  flex: 1;
+  border-radius: 1rem;
+  min-inline-size: 15rem;
+  block-size: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.category-containers > div:hover {
+  filter: drop-shadow(0 0 0.3rem #0000002f);
+  background-color: var(--glass-background);
+}
+
+.category-containers > div button,
+#sell-product {
+  block-size: 2.5rem;
+  border-radius: 2rem;
+  padding: 0 2rem;
+  background-color: var(--background-color);
+  border: 1px solid var(--color);
+  transition: all 0.25s;
+  font-size: 0.7rem;
+}
+
+.category-containers > div button:hover,
+#sell-product:hover {
+  background-color: var(--color);
+  color: var(--background-color);
+}
+
+.category-containers > div button:active,
+#sell-product:active {
+  background-color: var(--background-color);
+  border: 1px solid var(--color);
+}
+
+@media screen and (max-width: 500px) {
+  .with-padding {
+    padding: 3rem 1rem;
+  }
+}
+
+.trending-products-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.trending-products {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-image {
+  block-size: 10rem;
+  background-color: var(--color);
+}
+
+.product-card {
+  inline-size: 9rem;
+}
+
+.product-price {
+  font-weight: bolder;
+}
+
+.sell-product-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.sell-product-screenshot {
+  background-color: var(--color);
+  inline-size: 50vw;
+  min-inline-size: 20rem;
+  block-size: 20rem;
+}
+
+.newsletter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+#newsletter-subscribe-btn {
+  background-color: var(--color);
+  color: var(--background-color);
+  border: 1px solid var(--color);
+  inline-size: 15rem;
+  block-size: 2.5rem;
+  border-radius: 2.5rem;
+  transition: all 0.25s;
+}
+
+#newsletter-subscribe-btn:hover {
+  background-color: var(--background-color);
+  color: var(--color);
+}

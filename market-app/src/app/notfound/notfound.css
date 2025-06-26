@@ -1,0 +1,39 @@
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--glass-background);
+	backdrop-filter: blur(0.5rem);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: 10rem;
+	padding: 2rem;
+}
+
+@media screen and (max-width: 800px) {
+	main {
+		margin: 5rem;
+	}
+}
+
+p {
+	text-align: center;
+}
+
+svg {
+	block-size: 30rem;
+}
+
+@media screen and (max-width: 500px) {
+	svg {
+		block-size: 15rem;
+	}
+
+	main {
+		margin: 2rem 2rem 5rem 2rem;
+	}
+}
