@@ -63,5 +63,25 @@ export class App {
         })`;
       }
     });
+
+    const cartCount = document.querySelector('#cart-count');
+    const cartProductContainer = document.querySelector('.cart-products');
+    const cartProducts = cartProductContainer?.querySelectorAll('div');
+
+    (cartCount as HTMLSpanElement).innerText = String(
+      Number(cartProducts?.length)
+    );
+  }
+
+  openCart() {
+    const cartShadow = document.querySelector('.cart-shadow');
+    const cart = document.querySelector('.cart-section');
+    const body = document.querySelector('body');
+
+    if (cart && cartShadow && body) {
+      cartShadow?.classList.toggle('blurred');
+      cart.classList.toggle('open-cart');
+      body?.classList.toggle('hidden');
+    }
   }
 }

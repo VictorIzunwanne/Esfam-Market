@@ -33,3 +33,10 @@ section > div {
 	margin-block-start: 2rem;
 	background-color: var(--color);
 }
+
+.esfam-logo {
+  background: url('../../../public/esfamUni-logo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

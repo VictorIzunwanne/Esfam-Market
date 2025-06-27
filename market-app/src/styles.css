@@ -1,7 +1,7 @@
 :root {
   --background-color: #f8faff;
-  /* --color: #4f8cff; Modern blue as primary */
   --color: #1f681f;
+  --text-color: #000;
   --secondary-color: #fff;
   --glass-background: rgba(255, 255, 255, 0.7);
   --greyed-text-color: #e0e6ed;

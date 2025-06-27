@@ -23,7 +23,7 @@
       <button type="button" class="search-btn" (click)="openSearch()">
         <img src="assets/icons/search-black.svg" height="20px" />
       </button>
-      <button type="button" id="cart">
+      <button type="button" id="cart" (click)="openCart()">
         <!-- Maximum cart number should be 50 -->
         Cart <span id="cart-count">0</span>
       </button>
@@ -47,13 +47,13 @@
   <main>
     <router-outlet></router-outlet>
 
-    <div class="cart-shadow">
-      <div class="cart-section">
-        <div class="heading"></div>
-
-        <div class="products"></div>
+    <div class="cart-shadow"></div>
+    <div class="cart-section">
+      <div class="cart-heading">
         <h2>Cart</h2>
       </div>
+
+      <div class="cart-products"></div>
     </div>
   </main>
 
