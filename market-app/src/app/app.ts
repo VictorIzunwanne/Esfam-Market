@@ -26,26 +26,48 @@ export class App {
   }
 
   openMenu() {
-    const menuShadow = document.querySelector('.nav-shadow') as HTMLDivElement;
-    const body = document.querySelector('body') as HTMLBodyElement;
-    const menu = document.querySelector('nav') as HTMLDivElement;
+    const menuShadow = document.querySelector('.nav-shadow');
+    const menu = document.querySelector('nav');
 
-    if (menuShadow && body && menu) {
-      menuShadow.classList.toggle('blurred');
-      body.classList.toggle('hidden');
-      menu.classList.toggle('open');
+    if (menuShadow && menu) {
+      menuShadow.classList.contains('blurred')
+        ? menuShadow.classList.remove('blurred')
+        : menuShadow.classList.add('blurred');
+
+      menu.classList.contains('open')
+        ? menu.classList.remove('open')
+        : menu.classList.add('open');
+    }
+
+    this.workWithBody();
+
+    const cartShadow = document.querySelector('.cart-shadow');
+    const cart = document.querySelector('.cart-section');
+
+    if (cartShadow && cart) {
+      cartShadow.classList.remove('blurred');
+      cart.classList.remove('open-cart');
     }
   }
 
-  closeMenu() {
-    const menuShadow = document.querySelector('.nav-shadow') as HTMLDivElement;
-    const body = document.querySelector('body') as HTMLBodyElement;
-    const menu = document.querySelector('nav') as HTMLDivElement;
+  workWithBody() {
+    const cartShadow = document.querySelector('.cart-shadow');
+    const body = document.querySelector('body');
+    const menuShadow = document.querySelector('.nav-shadow');
 
-    if (menuShadow && body && menu) {
-      menuShadow.classList.toggle('blurred');
-      body.classList.toggle('hidden');
-      menu.classList.toggle('open');
+    if (cartShadow && body && menuShadow) {
+      if (menuShadow?.classList.contains('blurred')) {
+        body?.classList.add('hidden');
+      } else if (cartShadow?.classList.contains('blurred')) {
+        body?.classList.add('hidden');
+      } else if (
+        menuShadow?.classList.contains('blurred') &&
+        cartShadow?.classList.contains('blurred')
+      ) {
+        body?.classList.add('hidden');
+      } else {
+        body?.classList.remove('hidden');
+      }
     }
   }
 
@@ -76,12 +98,25 @@ export class App {
   openCart() {
     const cartShadow = document.querySelector('.cart-shadow');
     const cart = document.querySelector('.cart-section');
-    const body = document.querySelector('body');
 
-    if (cart && cartShadow && body) {
-      cartShadow?.classList.toggle('blurred');
-      cart.classList.toggle('open-cart');
-      body?.classList.toggle('hidden');
+    if (cart && cartShadow) {
+      cartShadow?.classList.contains('blurred')
+        ? cartShadow?.classList.remove('blurred')
+        : cartShadow?.classList.add('blurred');
+
+      cart.classList.contains('open-cart')
+        ? cart.classList.remove('open-cart')
+        : cart.classList.add('open-cart');
+    }
+
+    this.workWithBody();
+
+    const menuShadow = document.querySelector('.nav-shadow');
+    const menu = document.querySelector('nav');
+
+    if (menuShadow && menu) {
+      menu.classList.remove('open');
+      menuShadow.classList.remove('blurred');
     }
   }
 }

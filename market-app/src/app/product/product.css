@@ -17,7 +17,7 @@
 .product-container {
   flex: 1;
   background-color: var(--glass-background);
-} 
+}
 
 .main-product-container {
   display: flex;
@@ -69,4 +69,11 @@
 
 .product-price {
   font-weight: bolder;
+}
+
+.cateogory-section {
+  background: url("../../../public/product-header-image.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
