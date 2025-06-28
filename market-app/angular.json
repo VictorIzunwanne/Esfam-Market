@@ -13,7 +13,6 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/market-app/browser",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -23,11 +22,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "_redirects",
-                "input": "src/assets",
-                "output": "/"
               }
             ],
             "styles": [
@@ -48,24 +42,12 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ]
+              "outputHashing": "all"
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.ts"
-                }
-              ]
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
