@@ -1,39 +1,62 @@
-main {
+.body {
+	min-block-size: calc(100vh - 14rem);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: var(--glass-background);
-	backdrop-filter: blur(0.5rem);
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	margin: 10rem;
-	padding: 2rem;
 }
 
-@media screen and (max-width: 800px) {
-	main {
-		margin: 5rem;
-	}
-}
-
-p {
+section {
+	display: flex;
+	flex-direction: column;
 	text-align: center;
+	gap: 1rem;
 }
 
-svg {
-	block-size: 30rem;
+h2 {
+	font-size: 5rem;
+	color: var(--secondary-color);
+	animation: infinite heartbeat 1.5s;
 }
 
-@media screen and (max-width: 500px) {
-	svg {
-		block-size: 15rem;
+@keyframes heartbeat {
+	0% {
+		scale: 1;
 	}
 
-	main {
-		margin: 2rem 2rem 5rem 2rem;
+	30% {
+		scale: 1;
 	}
+
+	35% {
+		scale: 1.1;
+	}
+
+	40% {
+		scale: 1;
+	}
+
+	65% {
+		scale: 1;
+	}
+
+	70% {
+		scale: 1;
+	}
+
+	75% {
+		scale: 1.1;
+	}
+
+	90% {
+		scale: 1;
+	}
+
+	100% {
+		scale: 1;
+	}
+}
+
+a {
+	color: var(--secondary-color);
 }

@@ -1,84 +1,143 @@
-<div class="main">
-  <div class="nav-shadow"></div>
-  <nav>
-    <div class="nav-links">
-      <ul>
-        <li routerLink="" (click)="openMenu()">Home</li>
-        <li routerLink="/product" (click)="openMenu()">Products</li>
-        <li routerLink="/about" (click)="openMenu()">About</li>
-        <li routerLink="/sell" (click)="openMenu()">Sell</li>
-        <li routerLink="/account" (click)="openMenu()">Account</li>
-      </ul>
+<div class="body">
+  <div class="modal-background"></div>
+
+  <div class="wishlist">
+    <div class="header">
+      <h2>Wish List</h2>
+      <button type="button" class="close-button" (click)="closeWishlist()">
+        Close
+      </button>
     </div>
-    <footer>Developed by: Izunwanne Victor</footer>
-  </nav>
+    <div class="cart-content"></div>
+  </div>
+
+  <div class="cart">
+    <div class="header">
+      <h2>Cart</h2>
+      <button type="button" class="close-button" (click)="closeCart()">
+        Close
+      </button>
+    </div>
+    <div class="cart-content"></div>
+  </div>
 
   <header>
-    <button type="button" id="menu-btn" (click)="openMenu()">
-      <img src="assets/icons/menu-icon-black.svg" height="30px" />
-    </button>
-    <h1>Esfam Market</h1>
+    <div class="app-name">
+      <h1 routerLink="">{{ title }}</h1>
+    </div>
 
-    <div id="header-btns">
-      <button type="button" class="search-btn" (click)="openSearch()">
-        <img src="assets/icons/search-black.svg" height="20px" />
+    <nav>
+      <div class="drop-down">
+        <div class="dropdown-display" (click)="openDropDown()">
+          <div class="para"><p>Shop</p></div>
+
+          <div class="icon">
+            <img src="arrow.svg" alt="arrow icon" width="15px" />
+          </div>
+        </div>
+
+        <div class="dropdown-content">
+          <ul>
+            <li>Fashion</li>
+            <li>Electronic</li>
+            <li>Edible</li>
+            <li>School Materials</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <ul>
+          <li routerLink="market">Market</li>
+          <li routerLink="about">About</li>
+          <li routerLink="blog">Blog</li>
+        </ul>
+      </div>
+    </nav>
+
+    <search>
+      <div class="search-icon">
+        <img src="search.svg" alt="search icon" width="20px" id="search-icon" />
+      </div>
+
+      <form>
+        <input
+          type="search"
+          placeholder="Search for products"
+          maxlength="30"
+          required
+        />
+
+        <button type="submit">Search</button>
+      </form>
+    </search>
+
+    <div class="header-buttons">
+      <div class="sell-button" [routerLink]="sell ? 'sell' : 'login'">
+        <p>Sell</p>
+      </div>
+
+      <button type="button" (click)="openThemeMenu()">
+        <img src="theme.svg" alt="theme icon" width="20px" />
+
+        <div class="theme-container">
+          <ul>
+            <li class="light-theme" (click)="lightTheme()">
+              <div class="light-icon">
+                <img src="light.svg" alt="account icon" width="20px" />
+              </div>
+              Light
+            </li>
+            <li class="dark-theme" (click)="darkTheme()">
+              <div class="dark-icon">
+                <img src="dark.svg" alt="account icon" width="20px" />
+              </div>
+              Dark
+            </li>
+            <li class="auto-theme" (click)="autoTheme()">
+              <div class="auto-icon">
+                <img src="auto.svg" alt="auto icon" width="20px" />
+              </div>
+              Auto
+            </li>
+          </ul>
+        </div>
       </button>
-      <button type="button" id="cart" (click)="openCart()">
-        <!-- Maximum cart number should be 50 -->
-        Cart <span id="cart-count">0</span>
+
+      <button type="button" (click)="openWishlist()">
+        <img src="wishlist.svg" alt="theme icon" width="20px" />
+      </button>
+
+      <button type="button" (click)="openCart()">
+        <img src="cart.svg" alt="theme icon" width="20px" />
+      </button>
+
+      <button type="button" (click)="openAccountMenu()">
+        <img src="account.svg" alt="theme icon" width="20px" />
+
+        <div class="account-container">
+          <ul>
+            <li>
+              <div class="account-icon">
+                <img src="create-account.svg" alt="account icon" width="20px" />
+              </div>
+              <div>Join Esfam Market</div>
+            </li>
+            <li routerLink="setting">
+              <div class="setting-icon">
+                <img src="setting.svg" alt="account icon" width="20px" />
+              </div>
+              <div>Setting</div>
+            </li>
+          </ul>
+        </div>
       </button>
     </div>
   </header>
 
-  <search class="search">
-    <form class="search-product-form">
-      <input
-        type="text"
-        name="search-bar"
-        id="search-bar"
-        placeholder="Find Products"
-        maxlength="50"
-        required
-      />
-      <button type="submit">Search</button>
-    </form>
-  </search>
-
   <main>
     <router-outlet></router-outlet>
-
-    <div class="cart-shadow"></div>
-    <div class="cart-section">
-      <div class="cart-heading">
-        <h2>Cart</h2>
-      </div>
-
-      <div class="cart-products"></div>
-    </div>
   </main>
 
   <footer>&copy;All rights reserved. | Esfam Market 2025</footer>
 </div>
-
-<!-- <div class="balls-container">
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-  <div class="balls"></div>
-</div> -->

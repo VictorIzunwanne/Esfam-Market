@@ -1,108 +1,59 @@
 :root {
-  --background-color: #f8faff;
-  --color: #1f681f;
-  --text-color: #000;
-  --secondary-color: #fff;
-  --glass-background: rgba(255, 255, 255, 0.7);
-  --greyed-text-color: #e0e6ed;
+  --primary-color: #62e462;
+  --secondary-color: #e66565;
+  --background-color: #fff;
+  --other-color: #f7f7f7;
+  --primary-text-color: #000;
+  --secondary-text-color: #fff;
+  --other-text-color: #b6b6b6;
 }
 
 html {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: BlinkMacSystemFont, system-ui, -apple-system, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 16px;
-  background-color: var(--color);
+  background-color: var(--primary-color);
+}
+
+::selection {
+  background-color: var(--primary-color);
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
 }
 
 *,
-*::before,
-*::after {
+*::after,
+*::before {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 body {
   background-color: var(--background-color);
+  color: var(--primary-text-color);
 }
 
-.hidden {
-  overflow: hidden;
+h1 {
+  font-size: 1.5rem;
+}
+
+h1:hover {
+  color: var(--primary-color);
+}
+
+h1::selection {
+  color: var(--other-color);
 }
 
 button {
-  border: 0;
   cursor: pointer;
 }
 
-h6 {
-  color: #ff0000;
-}
-
-.balls-container {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-}
-
-.balls {
-  background-color: var(--color);
-  opacity: 30%;
-  block-size: 2rem;
-  inline-size: 2rem;
-  border-radius: 2rem;
-  margin: 1rem;
-  bottom: 5rem;
-  position: absolute;
-  animation: infinite play 3s;
-  pointer-events: none;
-}
-
-@keyframes play {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.5);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-.page-header-image {
-  background-color: var(--color);
-  display: flex;
-  flex-direction: column;
-  inline-size: 100%;
-  block-size: 10rem;
-  position: relative;
-}
-
-.page-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  gap: 0.5rem;
-  padding: 5rem;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #000000a6;
-  color: var(--background-color);
-}
-
-@media screen and (min-width: 600px) {
-  .page-header-image {
-    block-size: 15rem;
-  }
+.no-scroll {
+  overflow: hidden;
 }

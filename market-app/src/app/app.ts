@@ -9,114 +9,224 @@ import { RouterLink } from '@angular/router';
   styleUrl: './app.css',
 })
 export class App {
-  protected title = 'market-app';
-
-  openSearch() {
-    const searchBar = document.querySelector('.search') as HTMLInputElement;
-
-    const searchInput = document.querySelector(
-      '.search input'
-    ) as HTMLInputElement;
-
-    if (searchBar && searchInput) {
-      searchBar.style.blockSize === '5rem'
-        ? ((searchBar.style.blockSize = '0'), searchInput.blur())
-        : ((searchBar.style.blockSize = '5rem'), searchInput.focus());
-    }
-  }
-
-  openMenu() {
-    const menuShadow = document.querySelector('.nav-shadow');
-    const menu = document.querySelector('nav');
-
-    if (menuShadow && menu) {
-      menuShadow.classList.contains('blurred')
-        ? menuShadow.classList.remove('blurred')
-        : menuShadow.classList.add('blurred');
-
-      menu.classList.contains('open')
-        ? menu.classList.remove('open')
-        : menu.classList.add('open');
-    }
-
-    this.workWithBody();
-
-    const cartShadow = document.querySelector('.cart-shadow');
-    const cart = document.querySelector('.cart-section');
-
-    if (cartShadow && cart) {
-      cartShadow.classList.remove('blurred');
-      cart.classList.remove('open-cart');
-    }
-  }
-
-  workWithBody() {
-    const cartShadow = document.querySelector('.cart-shadow');
-    const body = document.querySelector('body');
-    const menuShadow = document.querySelector('.nav-shadow');
-
-    if (cartShadow && body && menuShadow) {
-      if (menuShadow?.classList.contains('blurred')) {
-        body?.classList.add('hidden');
-      } else if (cartShadow?.classList.contains('blurred')) {
-        body?.classList.add('hidden');
-      } else if (
-        menuShadow?.classList.contains('blurred') &&
-        cartShadow?.classList.contains('blurred')
-      ) {
-        body?.classList.add('hidden');
-      } else {
-        body?.classList.remove('hidden');
-      }
-    }
-  }
+  protected title = 'Esfam Market';
 
   constructor() {}
 
-  ngAfterViewInit() {
-    const balls = document.querySelectorAll('.balls');
-    balls.forEach((ball) => {
-      if (ball) {
-        // Use percentages or smaller pixel values for better placement
-        (ball as HTMLElement).style.bottom = `${Math.random() * 80}%`;
-        (ball as HTMLElement).style.left = `${Math.random() * 90}%`;
-        (ball as HTMLElement).style.transform = `scale(${
-          0.7 + Math.random() * 0.6
-        })`;
+  openDropDown() {
+    const dropMenu = document.querySelector('.dropdown-content');
+
+    if (dropMenu) {
+      dropMenu.classList.toggle('display');
+    }
+  }
+
+  sell = false
+
+  openThemeMenu() {
+    const themeMenu = document.querySelector('.theme-container');
+    const accountMenu = document.querySelector('.account-container');
+
+    if (themeMenu && accountMenu) {
+      themeMenu.classList.toggle('display');
+      accountMenu.classList.remove('display');
+    }
+  }
+
+  openAccountMenu() {
+    const accountMenu = document.querySelector('.account-container');
+    const themeMenu = document.querySelector('.theme-container');
+
+    if (accountMenu && themeMenu) {
+      accountMenu.classList.toggle('display');
+      themeMenu.classList.remove('display');
+    }
+  }
+
+  // THEME FUNCTION
+
+  setBackgroundColor(color: string) {
+    document.documentElement.style.setProperty('--background-color', color);
+  }
+
+  setTextColor(color: string) {
+    document.documentElement.style.setProperty('--primary-text-color', color);
+  }
+
+  setOtherColor(color: string) {
+    document.documentElement.style.setProperty('--other-color', color);
+  }
+
+  storedTheme = localStorage.getItem('theme');
+
+  storedThemeF() {
+    const lightTheme = document.querySelector('.light-theme');
+    const darkTheme = document.querySelector('.dark-theme');
+    const autoTheme = document.querySelector('.auto-theme');
+
+    if (this.storedTheme === 'light') {
+      this.light();
+      lightTheme?.classList.add('active');
+    } else if (this.storedTheme === 'dark') {
+      this.dark();
+      darkTheme?.classList.add('active');
+    } else if (this.storedTheme === 'auto') {
+      this.auto();
+      autoTheme?.classList.add('active');
+    }
+  }
+
+  private autoIntervalId: any;
+
+  auto() {
+    if (this.autoIntervalId) {
+      clearInterval(this.autoIntervalId);
+    }
+    this.autoIntervalId = setInterval(() => {
+      const hour = new Date().getHours();
+
+      if (hour < 7) {
+        this.dark();
+      } else if (hour >= 7 && hour < 19) {
+        this.light();
+      } else if (hour >= 19) {
+        this.dark();
       }
-    });
+    }, 1000);
+  }
 
-    const cartCount = document.querySelector('#cart-count');
-    const cartProductContainer = document.querySelector('.cart-products');
-    const cartProducts = cartProductContainer?.querySelectorAll('div');
+  light() {
+    this.setBackgroundColor('#fff');
+    this.setTextColor('#000');
+    this.setOtherColor('#f7f7f7');
+  }
 
-    (cartCount as HTMLSpanElement).innerText = String(
-      Number(cartProducts?.length)
-    );
+  dark() {
+    this.setBackgroundColor('#222222');
+    this.setTextColor('#fff');
+    this.setOtherColor('#464646');
+  }
+
+  lightTheme() {
+    const lightTheme = document.querySelector('.light-theme');
+
+    if (lightTheme) {
+      this.light();
+
+      localStorage.setItem('theme', 'light');
+    }
+
+    if (this.autoIntervalId) {
+      clearInterval(this.autoIntervalId);
+      this.autoIntervalId = null;
+    }
+
+    const darkTheme = document.querySelector('.dark-theme');
+    const autoTheme = document.querySelector('.auto-theme');
+
+    lightTheme?.classList.add('active');
+    darkTheme?.classList.remove('active');
+    autoTheme?.classList.remove('active');
+  }
+
+  darkTheme() {
+    const darkTheme = document.querySelector('.dark-theme');
+
+    if (darkTheme) {
+      this.dark();
+
+      localStorage.setItem('theme', 'dark');
+    }
+
+    if (this.autoIntervalId) {
+      clearInterval(this.autoIntervalId);
+      this.autoIntervalId = null;
+    }
+
+    const lightTheme = document.querySelector('.light-theme'); // FIXED
+    const autoTheme = document.querySelector('.auto-theme');
+
+    darkTheme?.classList.add('active');
+    lightTheme?.classList.remove('active');
+    autoTheme?.classList.remove('active');
+  }
+
+  autoTheme() {
+    const autoTheme = document.querySelector('.auto-theme');
+
+    if (autoTheme) {
+      this.auto();
+
+      localStorage.setItem('theme', 'auto');
+    }
+
+    const darkTheme = document.querySelector('.dark-theme');
+    const lightTheme = document.querySelector('.light-theme'); // FIXED
+
+    autoTheme?.classList.add('active');
+    lightTheme?.classList.remove('active');
+    darkTheme?.classList.remove('active');
+  }
+
+  openWishlist() {
+    const wishlist = document.querySelector('.wishlist');
+    const modalBackground = document.querySelector(
+      '.modal-background'
+    ) as HTMLElement;
+    const body = document.body;
+
+    if (wishlist && modalBackground && body) {
+      wishlist.classList.add('opened');
+      modalBackground.style.display = 'flex';
+      body.classList.add('no-scroll');
+    }
+  }
+
+  closeWishlist() {
+    const wishlist = document.querySelector('.wishlist');
+    const modalBackground = document.querySelector(
+      '.modal-background'
+    ) as HTMLElement;
+    const body = document.body;
+
+    if (wishlist && modalBackground && body) {
+      wishlist.classList.remove('opened');
+      modalBackground.style.display = 'none';
+      body.classList.remove('no-scroll');
+    }
   }
 
   openCart() {
-    const cartShadow = document.querySelector('.cart-shadow');
-    const cart = document.querySelector('.cart-section');
+    const cart = document.querySelector('.cart');
+    const modalBackground = document.querySelector(
+      '.modal-background'
+    ) as HTMLElement;
+    const body = document.body;
 
-    if (cart && cartShadow) {
-      cartShadow?.classList.contains('blurred')
-        ? cartShadow?.classList.remove('blurred')
-        : cartShadow?.classList.add('blurred');
-
-      cart.classList.contains('open-cart')
-        ? cart.classList.remove('open-cart')
-        : cart.classList.add('open-cart');
+    if (cart && modalBackground && body) {
+      cart.classList.add('opened');
+      modalBackground.style.display = 'flex';
+      body.classList.add('no-scroll');
     }
+  }
 
-    this.workWithBody();
+  closeCart() {
+    const cart = document.querySelector('.cart');
+    const modalBackground = document.querySelector(
+      '.modal-background'
+    ) as HTMLElement;
+    const body = document.body;
 
-    const menuShadow = document.querySelector('.nav-shadow');
-    const menu = document.querySelector('nav');
-
-    if (menuShadow && menu) {
-      menu.classList.remove('open');
-      menuShadow.classList.remove('blurred');
+    if (cart && modalBackground && body) {
+      cart.classList.remove('opened');
+      modalBackground.style.display = 'none';
+      body.classList.remove('no-scroll');
     }
+  }
+
+  // THEME FUNCTION END
+
+  ngAfterViewInit() {
+    this.storedThemeF();
   }
 }
