@@ -11,6 +11,10 @@ header {
   z-index: 1;
 }
 
+.close-menu {
+  padding: 0;
+}
+
 .app-name {
   inline-size: 10rem;
   cursor: pointer;
@@ -79,47 +83,6 @@ nav {
   color: var(--primary-color);
 }
 
-search {
-  background-color: var(--other-color);
-  display: flex;
-  align-items: center;
-  padding-inline-end: 0.5rem;
-  border-radius: 0.25rem;
-}
-
-.search-icon {
-  display: flex;
-  align-items: center;
-  margin: 0.8rem;
-}
-
-#search-icon {
-  transform: rotate(135deg);
-}
-
-search form {
-  block-size: 2rem;
-  display: flex;
-}
-
-search input {
-  background-color: transparent;
-  color: var(--primary-text-color);
-  block-size: 100%;
-  border: none;
-}
-
-search input:focus {
-  outline: none;
-}
-
-search button {
-  block-size: 100%;
-  padding-inline: 0.5rem;
-  border: none;
-  border-radius: 0.25rem;
-}
-
 .sell-button {
   background-color: var(--primary-color);
   color: var(--secondary-text-color);
@@ -178,7 +141,6 @@ search button {
 
 main {
   flex: 1;
-  padding: 2rem;
 }
 
 footer {
@@ -236,8 +198,42 @@ footer {
   inline-size: 30rem;
 }
 
+.menu-button {
+  display: none;
+  inline-size: 2rem;
+  background-color: #f7f7f7;
+  border-radius: 0.2rem;
+  border: none;
+}
+
 @media screen and (max-width: 600px) {
   .opened {
     left: 0;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  header {
+    gap: 0;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  .sell-button {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .cta-write-up h2 {
+    font-size: 1rem;
   }
 }

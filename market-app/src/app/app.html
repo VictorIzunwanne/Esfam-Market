@@ -1,4 +1,4 @@
-<div class="body">
+<div class="body" (click)="closeDropDowns()">
   <div class="modal-background"></div>
 
   <div class="wishlist">
@@ -22,6 +22,10 @@
   </div>
 
   <header>
+    <button type="button" class="menu-button" (click)="openMenu()">
+      <img src="menu.svg" alt="menu button" width="25px">
+    </button>
+
     <div class="app-name">
       <h1 routerLink="">{{ title }}</h1>
     </div>
@@ -41,7 +45,7 @@
             <li>Fashion</li>
             <li>Electronic</li>
             <li>Edible</li>
-            <li>School Materials</li>
+            <li>School Material</li>
           </ul>
         </div>
       </div>
@@ -54,23 +58,6 @@
         </ul>
       </div>
     </nav>
-
-    <search>
-      <div class="search-icon">
-        <img src="search.svg" alt="search icon" width="20px" id="search-icon" />
-      </div>
-
-      <form>
-        <input
-          type="search"
-          placeholder="Search for products"
-          maxlength="30"
-          required
-        />
-
-        <button type="submit">Search</button>
-      </form>
-    </search>
 
     <div class="header-buttons">
       <div class="sell-button" [routerLink]="sell ? 'sell' : 'login'">

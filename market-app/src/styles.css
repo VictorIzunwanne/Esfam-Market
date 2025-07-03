@@ -1,6 +1,6 @@
 :root {
   --primary-color: #62e462;
-  --secondary-color: #e66565;
+  --secondary-color: #fff;
   --background-color: #fff;
   --other-color: #f7f7f7;
   --primary-text-color: #000;
@@ -17,6 +17,7 @@ html {
 
 ::selection {
   background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 @media screen and (max-width: 600px) {
@@ -42,12 +43,13 @@ h1 {
   font-size: 1.5rem;
 }
 
-h1:hover {
-  color: var(--primary-color);
-}
-
 h1::selection {
   color: var(--other-color);
+}
+
+h3 {
+  color: #ffffff3f;
+  margin-block-end: 1rem;
 }
 
 button {

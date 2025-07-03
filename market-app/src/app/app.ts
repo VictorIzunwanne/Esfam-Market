@@ -13,6 +13,30 @@ export class App {
 
   constructor() {}
 
+  closeDropDowns() {
+    const dropMenu = document.querySelector('.dropdown-content');
+    const themeMenu = document.querySelector('.theme-container');
+    const accountMenu = document.querySelector('.account-container');
+
+    if (dropMenu && themeMenu && accountMenu) {
+      if (
+        dropMenu.classList.contains('display') ||
+        themeMenu.classList.contains('display') ||
+        accountMenu.classList.contains('display')
+      ) {
+        setTimeout(() => {
+          accountMenu.classList.remove('display');
+          themeMenu.classList.remove('display');
+          dropMenu.classList.remove('display');
+        }, 5000);
+      }
+    }
+  }
+
+  openMenu() {
+    console.log('Menu opened!');
+  }
+
   openDropDown() {
     const dropMenu = document.querySelector('.dropdown-content');
 
@@ -21,7 +45,7 @@ export class App {
     }
   }
 
-  sell = false
+  sell = false;
 
   openThemeMenu() {
     const themeMenu = document.querySelector('.theme-container');

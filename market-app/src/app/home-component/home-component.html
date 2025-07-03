@@ -1,23 +1,147 @@
 <div class="body">
   <section class="cta-section">
-    <div class="cta-content">
-      <div class="cta-contents"></div>
-      <div class="cta-contents"></div>
-      <div class="cta-contents"></div>
-    </div>
-
-    <div class="change-cta-buttons">
-      <button type="button"></button>
-      <button type="button"></button>
-      <button type="button"></button>
+    <div class="cta-write-up">
+      <h2>Find Everything You Need on Campus</h2>
+      <p>
+        Discover, buy, and sell products easily within the Esfam student
+        community.
+      </p>
+      <button type="button" class="cta-btn" routerLink="market">
+        Explore Products
+      </button>
     </div>
   </section>
 
-  <section></section>
+  <section class="feature-section">
+    <div class="features">
+      <img src="market.svg" alt="market icon" width="60px" />
+      <h4>Streamlined Buying and Selling</h4>
+      <p>
+        Experience a seamless platform tailored for students to easily buy and
+        sell products.
+      </p>
+    </div>
+    <div class="features">
+      <img src="creditcardoff.svg" alt="cerdit card off icon" width="60px" />
+      <h4>No Hidden Fees</h4>
+      <p>
+        Enjoy this platform completely free—no charges or hidden costs for
+        buying or selling.
+      </p>
+    </div>
+    <div class="features">
+      <img src="data.svg" alt="data icon" width="60px" />
+      <h4>Data Protection</h4>
+      <p>
+        Your personal information is safeguarded with robust security measures.
+      </p>
+    </div>
+    <div class="features">
+      <img src="accessibility.svg" alt="accesibility icon" width="60px" />
+      <h4>Easy Access</h4>
+      <p>All Esfam students have exclusive access to this platform.</p>
+    </div>
+  </section>
 
-  <section></section>
+  <section class="category-section">
+    <div>
+      <h2>Browse Categories</h2>
+      <p>
+        Discover a diverse selection of product categories curated for Esfam
+        students.
+      </p>
+    </div>
 
-  <section></section>
+    <div class="container">
+      <div class="gender">
+        <div class="men">
+          <div class="title"><h4>Men</h4></div>
+        </div>
 
-  <section></section>
+        <div class="women">
+          <div class="title"><h4>Women</h4></div>
+        </div>
+      </div>
+
+      <div class="categories">
+        <div class="category">Fashion</div>
+        <div class="category">Electronic</div>
+        <div class="category">Edible</div>
+        <div class="category">School Material</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="most-purchased-product-section">
+    <div class="heading">
+      <h2>Top Purchased Products</h2>
+      <p>
+        Explore the most popular products among Esfam students, trusted and
+        purchased by your peers.
+      </p>
+    </div>
+
+    <div class="products">
+      @for (item of products; track item._id) {
+      <div class="product">
+        <div class="image"></div>
+        <div class="details">
+          <p>{{ item.name || 'Unnamed Product' }}</p>
+          <p class="price">₦<span>{{ item.price.toLocaleString()}}</span></p>
+          <button class="other-button">Add to cart</button>
+        </div>
+      </div>
+      }
+    </div>
+  </section>
+
+  <section class="sell-section">
+    <div class="sell-write-up">
+      <h2>Effortlessly List Your Products for Free</h2>
+      <p>
+        Share your items with fellow students by uploading your products at no
+        cost. Connect with buyers easily and securely within the Esfam
+        community.
+      </p>
+      <button type="button" class="sell-button other-button">
+        Upload your products
+      </button>
+    </div>
+
+    <div class="sell-image">
+      <div class="sell-actual-image"></div>
+    </div>
+  </section>
+
+  <section class="blog-section">
+    <div class="blog-image">
+      <div class="blog-actual-image"></div>
+    </div>
+
+    <div class="blog-write-up">
+      <h2>Engage and Grow Your Audience with Blog Posts</h2>
+      <p>
+        Share valuable insights and updates to connect with your customers and
+        attract new ones. Start writing blogs to enhance your presence within
+        the Esfam community.
+      </p>
+      <button type="button" class="write-blog other-button">
+        Start Writing Blogs
+      </button>
+    </div>
+  </section>
+
+  <section class="join-section">
+    <div class="write-up">
+      <h2>Join Esfam Market Today and Unlock Exclusive Benefits</h2>
+      <p>
+        Become a member to access a vibrant marketplace designed for Esfam
+        students. Enjoy seamless buying, selling, and community engagement.
+      </p>
+      <div class="btns">
+        <button type="button" class="other-buttons cta-btn">Sign Up</button>
+        <button type="button" class="other-buttons other-button">Login</button>
+      </div>
+    </div>
+  </section>
 </div>
