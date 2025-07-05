@@ -33,10 +33,6 @@ export class App {
     }
   }
 
-  openMenu() {
-    console.log('Menu opened!');
-  }
-
   openDropDown() {
     const dropMenu = document.querySelector('.dropdown-content');
 
@@ -191,6 +187,7 @@ export class App {
     lightTheme?.classList.remove('active');
     darkTheme?.classList.remove('active');
   }
+  // THEME FUNCTION END
 
   openWishlist() {
     const wishlist = document.querySelector('.wishlist');
@@ -248,7 +245,33 @@ export class App {
     }
   }
 
-  // THEME FUNCTION END
+  openMenu() {
+    const menu = document.querySelector('.menu');
+    const modalBackground = document.querySelector(
+      '.modal-background'
+    ) as HTMLElement;
+    const body = document.body;
+
+    if (menu && modalBackground && body) {
+      menu.classList.add('opened');
+      modalBackground.style.display = 'flex';
+      body.classList.add('no-scroll');
+    }
+  }
+
+  closeMenu() {
+    const menu = document.querySelector('.menu');
+    const modalBackground = document.querySelector(
+      '.modal-background'
+    ) as HTMLElement;
+    const body = document.body;
+
+    if (menu && modalBackground && body) {
+      menu.classList.remove('opened');
+      modalBackground.style.display = 'none';
+      body.classList.remove('no-scroll');
+    }
+  }
 
   ngAfterViewInit() {
     this.storedThemeF();

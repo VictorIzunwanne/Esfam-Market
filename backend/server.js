@@ -14,14 +14,14 @@ app.use(
 );
 
 const productSchema = new mongoose.Schema({
-  _id: Object,
+  _id: mongoose.Schema.Types.ObjectId,
   name: String,
   category: String,
   for: String,
   description: String,
   price: Number,
   stock: Number,
-  sellerId: Object,
+  sellerId: mongoose.Schema.Types.ObjectId,
 });
 
 const productModel = mongoose.model("products", productSchema);

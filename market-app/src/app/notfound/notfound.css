@@ -1,62 +1,18 @@
-.body {
-	min-block-size: calc(100vh - 14rem);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-section {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	gap: 1rem;
+.notfound-message {
+  background-color: var(--background-color);
+  max-inline-size: 40rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  filter: drop-shadow(0 0 0.2rem var(--primary-text-color));
 }
 
 h2 {
-	font-size: 5rem;
-	color: var(--secondary-color);
-	animation: infinite heartbeat 1.5s;
-}
-
-@keyframes heartbeat {
-	0% {
-		scale: 1;
-	}
-
-	30% {
-		scale: 1;
-	}
-
-	35% {
-		scale: 1.1;
-	}
-
-	40% {
-		scale: 1;
-	}
-
-	65% {
-		scale: 1;
-	}
-
-	70% {
-		scale: 1;
-	}
-
-	75% {
-		scale: 1.1;
-	}
-
-	90% {
-		scale: 1;
-	}
-
-	100% {
-		scale: 1;
-	}
+  color: var(--primary-color);
 }
 
 a {
-	color: var(--secondary-color);
+  color: var(--primary-color);
 }

@@ -1,18 +1,193 @@
-<p>market works!</p>
+<div class="body">
+  <div class="main">
+    <section class="market-welcome-section fixed-section-color">
+      <div class="write-up">
+        <h2>Find what you need by their categories</h2>
+        <p>
+          Discover a wide range of quality products at unbeatable prices. Enjoy
+          a seamless shopping experience tailored just for you.
+        </p>
+      </div>
+    </section>
 
-<search>
-  <div class="search-icon">
-    <img src="search.svg" alt="search icon" width="20px" id="search-icon" />
+    <div class="header">
+      <search>
+        <div class="search-icon">
+          <img
+            src="search.svg"
+            alt="search icon"
+            width="20px"
+            id="search-icon"
+          />
+        </div>
+
+        <form>
+          <input
+            type="search"
+            placeholder="Search for products"
+            maxlength="30"
+            required
+          />
+
+          <button type="submit">Search</button>
+        </form>
+      </search>
+    </div>
+
+    <section>
+      <div class="men-section">
+        <div class="heading">
+          <h2>Men</h2>
+          <p>See all products for men</p>
+        </div>
+
+        <div class="men-products contents">
+          <div class="products">
+            @for (item of products; track item._id) {
+            <div class="product">
+              <div class="image"></div>
+              <div class="details">
+                <p>{{ item.name || 'Unnamed Product' }}</p>
+                <p class="price">
+                  ₦<span>{{ item.price.toLocaleString()}}</span>
+                </p>
+                <button class="other-button">Add to cart</button>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="women-section">
+        <div class="heading">
+          <h2>Women</h2>
+          <p>See all products for women</p>
+        </div>
+
+        <div class="women-products contents">
+          <div class="products">
+            @for (item of products; track item._id) {
+            <div class="product">
+              <div class="image"></div>
+              <div class="details">
+                <p>{{ item.name || 'Unnamed Product' }}</p>
+                <p class="price">
+                  ₦<span>{{ item.price.toLocaleString()}}</span>
+                </p>
+                <button class="other-button">Add to cart</button>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="fashion-section">
+        <div class="heading">
+          <h2>Fashion</h2>
+          <p>See all fashion</p>
+        </div>
+
+        <div class="fashion-products contents">
+          <div class="products">
+            @for (item of products; track item._id) {
+            <div class="product">
+              <div class="image"></div>
+              <div class="details">
+                <p>{{ item.name || 'Unnamed Product' }}</p>
+                <p class="price">
+                  ₦<span>{{ item.price.toLocaleString()}}</span>
+                </p>
+                <button class="other-button">Add to cart</button>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="electronic-section">
+        <div class="heading">
+          <h2>Electronic</h2>
+          <p>See all electronics</p>
+        </div>
+
+        <div class="electronic-products contents">
+          <div class="products">
+            @for (item of products; track item._id) {
+            <div class="product">
+              <div class="image"></div>
+              <div class="details">
+                <p>{{ item.name || 'Unnamed Product' }}</p>
+                <p class="price">
+                  ₦<span>{{ item.price.toLocaleString()}}</span>
+                </p>
+                <button class="other-button">Add to cart</button>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="edible-section">
+        <div class="heading">
+          <h2>Edible</h2>
+          <p>See all edible products</p>
+        </div>
+
+        <div class="edible-products contents">
+          <div class="products">
+            @for (item of products; track item._id) {
+            <div class="product">
+              <div class="image"></div>
+              <div class="details">
+                <p>{{ item.name || 'Unnamed Product' }}</p>
+                <p class="price">
+                  ₦<span>{{ item.price.toLocaleString()}}</span>
+                </p>
+                <button class="other-button">Add to cart</button>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="school-material-section">
+        <div class="heading">
+          <h2>School Material</h2>
+          <p>See all school materials</p>
+        </div>
+
+        <div class="school-material-products contents">
+          <div class="products">
+            @for (item of products; track item._id) {
+            <div class="product">
+              <div class="image"></div>
+              <div class="details">
+                <p>{{ item.name || 'Unnamed Product' }}</p>
+                <p class="price">
+                  ₦<span>{{ item.price.toLocaleString()}}</span>
+                </p>
+                <button class="other-button">Add to cart</button>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-
-  <form>
-    <input
-      type="search"
-      placeholder="Search for products"
-      maxlength="30"
-      required
-    />
-
-    <button type="submit">Search</button>
-  </form>
-</search>
+</div>

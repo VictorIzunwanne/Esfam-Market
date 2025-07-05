@@ -8,7 +8,7 @@ header {
   align-items: center;
   padding: 0 2rem;
   border-block-end: 2px solid var(--other-color);
-  z-index: 1;
+  z-index: 3;
 }
 
 .close-menu {
@@ -144,6 +144,7 @@ main {
 }
 
 footer {
+  color: grey;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,8 +178,10 @@ footer {
   left: 0;
   z-index: 1;
   display: none;
+  z-index: 4;
 }
 
+.menu,
 .wishlist,
 .cart {
   position: fixed;
@@ -191,7 +194,7 @@ footer {
   inline-size: 0rem;
   overflow: hidden;
   transition: all 0.1s;
-  z-index: 2;
+  z-index: 4;
 }
 
 .opened {
@@ -212,7 +215,7 @@ footer {
   }
 
   nav {
-    display: none;
+    display: none;  
   }
 
   .menu-button {
@@ -225,6 +228,10 @@ footer {
     gap: 0;
     justify-content: space-between;
     padding: 1rem;
+  }
+
+  .header-buttons {
+    gap: 1rem;
   }
 
   .sell-button {

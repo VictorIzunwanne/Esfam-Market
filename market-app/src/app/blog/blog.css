@@ -1,0 +1,105 @@
+section {
+  flex-direction: column;
+}
+
+.blog-welcome-section {
+  background: url("https://res.cloudinary.com/dqmfnubj5/image/upload/v1751573074/products/1751573066466-welcome.jpeg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.write-up {
+  background-color: #00000070;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.write-up h2,
+.write-up p {
+  max-width: 70rem;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.blogs {
+  text-align: center;
+  display: flex;
+  gap: 2rem;
+}
+
+.heading p {
+  color: var(--primary-color);
+}
+
+.content {
+  inline-size: 100%;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+}
+
+.blog {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-inline-size: 35rem;
+  min-inline-size: 20rem;
+}
+
+.blog > div {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.blog-image {
+  background-color: #000;
+  inline-size: 100%;
+  min-block-size: 20rem;
+  border-radius: 0.5rem;
+}
+
+.blog > div > div {
+  display: flex;
+  inline-size: 100%;
+  gap: 1rem;
+}
+
+.author-image {
+  background-color: #000;
+  inline-size: 3rem;
+  block-size: 3rem;
+  border-radius: 3rem;
+}
+
+.details div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.report {
+  color: var(--primary-color);
+}
+
+.report:hover {
+  text-decoration: underline;
+}

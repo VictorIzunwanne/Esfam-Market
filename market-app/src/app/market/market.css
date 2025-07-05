@@ -1,8 +1,34 @@
+.body {
+  min-block-size: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  position: sticky;
+  top: 5rem;
+  background-color: var(--background-color);
+  padding: 1rem 2rem;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--primary-color);
+  z-index: 2;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 search {
   background-color: var(--other-color);
+  inline-size: 90%;
   display: flex;
   align-items: center;
   padding-inline-end: 0.5rem;
+  border: 1px solid var(--primary-color);
   border-radius: 0.25rem;
 }
 
@@ -17,11 +43,13 @@ search {
 }
 
 search form {
+  inline-size: 100%;
   block-size: 2rem;
   display: flex;
 }
 
 search input {
+  flex: 1;
   background-color: transparent;
   color: var(--primary-text-color);
   block-size: 100%;
@@ -37,4 +65,71 @@ search button {
   padding-inline: 0.5rem;
   border: none;
   border-radius: 0.25rem;
+}
+
+section > div {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.market-welcome-section {
+  background: url("https://res.cloudinary.com/dqmfnubj5/image/upload/v1751574658/products/1751574655725-market.jpeg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.write-up {
+  background-color: #00000070;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.heading {
+  background-color: var(--primary-color);
+  color: #000;
+  border-radius: 0.5rem;
+  block-size: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.heading h2:hover {
+  text-decoration: underline;
+}
+
+.contents {
+  min-block-size: 25rem;
+  flex: 1;
+  border: 2px solid var(--primary-color);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 700px) {
+  .search-icon {
+    margin: 0.5rem;
+  }
+}
+.contents {
+  padding: 2rem;
 }
