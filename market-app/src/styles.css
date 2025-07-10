@@ -132,6 +132,62 @@ section:nth-child(odd) {
 }
 
 .other-button:hover {
-  background-color: var(--primary-text-color);
+  border: 2px solid var(--primary-color);
   color: var(--primary-color);
+}
+
+search {
+  background-color: var(--other-color);
+  inline-size: 90%;
+  display: flex;
+  align-items: center;
+  padding-inline-end: 0.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.25rem;
+}
+
+.search-icon {
+  display: flex;
+  align-items: center;
+  margin: 0.8rem;
+}
+
+#search-icon {
+  transform: rotate(135deg);
+}
+
+search form {
+  inline-size: 100%;
+  block-size: 2rem;
+  display: flex;
+}
+
+search input {
+  flex: 1;
+  background-color: transparent;
+  color: var(--primary-text-color);
+  block-size: 100%;
+  border: none;
+  inline-size: 10rem;
+}
+
+search input:focus {
+  outline: none;
+}
+
+search button {
+  block-size: 100%;
+  padding-inline: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.close-search {
+  display: flex;
+}
+
+input,
+textarea {
+  padding: 1rem;
+  font-size: 1rem;
 }

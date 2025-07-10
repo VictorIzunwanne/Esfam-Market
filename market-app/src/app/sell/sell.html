@@ -1,1 +1,178 @@
-<p>sell works!</p>
+<div class="body">
+  <section class="sell-section">
+    <h2>Product Upload Portal</h2>
+    <p>
+      Effortlessly add your products to Esfam Market in just a few simple steps.
+    </p>
+    <button
+      type="button"
+      class="start-uploading other-button"
+      (click)="startUpload()"
+    >
+      Begin Upload
+    </button>
+
+    <div class="upload-form">
+      <div class="header">
+        <h3>Please complete the form accurately</h3>
+        <button
+          type="button"
+          class="close-button"
+          title="stop uploading"
+          (click)="stopUpload()"
+        >
+          <img src="close.svg" alt="close icon" />
+        </button>
+      </div>
+
+      <div class="upload-content">
+        <div class="content">
+          <form class="name" (submit)="description($event)">
+            <label for="product-name"> Product Name </label>
+            <input
+              type="text"
+              id="product-name"
+              name="product-name"
+              maxlength="50"
+              placeholder="e.g., Baggy Jeans"
+              required
+            />
+            <button type="submit" class="submit-button submit-name">
+              Submit
+            </button>
+          </form>
+
+          <form class="description" (submit)="priceStock($event)">
+            <label for="product-description"> Product Description </label>
+            <textarea
+              name="product-description"
+              id="product-description"
+              disabled
+            ></textarea>
+            <button
+              type="submit"
+              class="submit-button submit-description"
+              disabled
+            >
+              Submit
+            </button>
+          </form>
+
+          <form class="price-stock" (submit)="category($event)">
+            <div class="product-price">
+              <label for="product-price">Product Price</label>
+              <input
+                type="number"
+                name="product-price"
+                id="product-price"
+                disabled
+              />
+            </div>
+
+            <div class="product-stock">
+              <label for="product-stock">Product Stock</label>
+              <input
+                type="number"
+                name="product-stock"
+                id="product-stock"
+                disabled
+              />
+            </div>
+            <button type="submit" class="submit-price-stock" disabled>
+              Submit
+            </button>
+          </form>
+
+          <form>
+            <label for="product-category">Product Category</label>
+            <select name="categories" id="categories" disabled>
+              <option value="fashion">Fashion</option>
+              <option value="electronic">Electronic</option>
+              <option value="edible">Edible</option>
+              <option value="school-material">School Material</option>
+            </select>
+
+            <label for="gender">For</label>
+            <select name="gender" id="gender" disabled>
+              <option value="men">Men</option>
+              <option value="women">Women</option>
+            </select>
+
+            <button type="submit" class="submit-category" disabled>
+              Submit
+            </button>
+          </form>
+
+          <form>
+            <label for="primaryImage">Primary Image</label>
+            <input
+              type="file"
+              name="primaryImage"
+              id="primaryImage"
+              accept="image/.jpeg, .jpg, .png, .webp"
+              required
+              disabled
+            />
+            <label for="secondaryImage">Secondary Image</label>
+            <input
+              type="file"
+              name="secondaryImage"
+              id="secondaryImage"
+              accept="image/.jpeg, .jpg, .png, .webp"
+              required
+              disabled
+            />
+            <label for="thirdImage">Third Image</label>
+            <input
+              type="file"
+              name="thirdImage"
+              id="thirdImage"
+              accept="image/.jpeg, .jpg, .png, .webp"
+              required
+              disabled
+            />
+            <button type="submit" class="submit-image" disabled>Submit</button>
+          </form>
+        </div>
+
+        <div class="preview">
+          <h3>Preview</h3>
+
+          <div class="preview-container">
+            <p>What will be visible</p>
+
+            <div class="preview-product">
+              <div class="preview-product-image primary-image"></div>
+              <div class="preview-product-details">
+                <div class="preiew-product-name">Body Cream</div>
+                <div class="preview-product-price">₦ <span>5,000</span></div>
+              </div>
+            </div>
+
+            <p>What will not be visible</p>
+
+            <div class="product-information">
+              <div class="preview-product-image secondary-image"></div>
+              <div class="preview-product-image third-image"></div>
+            </div>
+
+            <div class="preview-product-description">
+              <h4>Description</h4>
+
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero
+                maiores modi repellat iste laborum in quo facilis mollitia
+                dolorem soluta? Tenetur laboriosam mollitia maiores voluptatum
+                optio in hic, ad nulla.
+              </p>
+            </div>
+
+            <button type="button" class="upload-finished-product">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

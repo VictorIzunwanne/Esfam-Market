@@ -1,21 +1,21 @@
-<div class="body" (click)="closeDropDowns()">
+<div class="body">
   <div class="modal-background"></div>
 
   <div class="wishlist">
     <div class="header">
-      <h2>Wish List</h2>
+      <h3>Wish List</h3>
       <button type="button" class="close-button" (click)="closeWishlist()">
-        Close
+        <img src="close.svg" alt="close button" />
       </button>
     </div>
-    <div class="cart-content"></div>
+    <div class="wishlist-content"></div>
   </div>
 
   <div class="cart">
     <div class="header">
-      <h2>Cart</h2>
+      <h3>Cart</h3>
       <button type="button" class="close-button" (click)="closeCart()">
-        Close
+        <img src="close.svg" alt="close button" />
       </button>
     </div>
     <div class="cart-content"></div>
@@ -23,12 +23,70 @@
 
   <div class="menu">
     <div class="header">
-      <h2>Esfam Market</h2>
+      <h3>Esfam Market</h3>
       <button type="button" class="close-button" (click)="closeMenu()">
-        Close
+        <img src="close.svg" alt="close button" />
       </button>
     </div>
-    <div class="menu-content"></div>
+    <div class="menu-content">
+      <ul>
+        <li class="not-drop-down" routerLink="" (click)="closeMenu()">
+          <img src="home.svg" alt="home icon" />
+          <p>Home</p>
+        </li>
+        <li (click)="openMenuDropDown()" class="no-padding">
+          <div class="shop-menu">
+            <div>
+              <img src="shop.svg" alt="shop icon" />
+              <p>Shop</p>
+            </div>
+
+            <ul class="menu-drop-down">
+              <li
+                class="not-drop-down"
+                routerLink="/fashion"
+                (click)="closeMenu()"
+              >
+                <p>Fashion</p>
+              </li>
+              <li
+                class="not-drop-down"
+                routerLink="/electronic"
+                (click)="closeMenu()"
+              >
+                <p>Electronic</p>
+              </li>
+              <li
+                class="not-drop-down"
+                routerLink="/edible"
+                (click)="closeMenu()"
+              >
+                <p>Edible</p>
+              </li>
+              <li
+                class="not-drop-down"
+                routerLink="/school-accessory"
+                (click)="closeMenu()"
+              >
+                <p>School Accessories</p>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="not-drop-down" routerLink="/market" (click)="closeMenu()">
+          <img src="store.svg" alt="store icon">
+          <p>Market</p>
+        </li>
+        <li class="not-drop-down" routerLink="/blog" (click)="closeMenu()">
+          <img src="blog.svg" alt="blog icon">
+          <p>Blog</p>
+        </li>
+        <li class="not-drop-down" routerLink="/about" (click)="closeMenu()">
+          <img src="about.svg" alt="about icon">
+          <p>About</p>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <header>
@@ -52,19 +110,19 @@
 
         <div class="dropdown-content">
           <ul>
-            <li>Fashion</li>
-            <li>Electronic</li>
-            <li>Edible</li>
-            <li>School Material</li>
+            <li routerLink="/fashion">Fashion</li>
+            <li routerLink="/electronic">Electronic</li>
+            <li routerLink="/edible">Edible</li>
+            <li routerLink="school-accessory">School Material</li>
           </ul>
         </div>
       </div>
 
       <div class="nav-links">
         <ul>
-          <li routerLink="market">Market</li>
-          <li routerLink="about">About</li>
-          <li routerLink="blog">Blog</li>
+          <li routerLink="/market">Market</li>
+          <li routerLink="/about">About</li>
+          <li routerLink="/blog">Blog</li>
         </ul>
       </div>
     </nav>
@@ -120,6 +178,14 @@
               </div>
               <div>Join Esfam Market</div>
             </li>
+
+            <li [routerLink]="sell ? 'sell' : 'login'">
+              <div class="sell-icon">
+                <img src="sell.svg" alt="account icon" width="20px" />
+              </div>
+              <div>Sell</div>
+            </li>
+
             <li routerLink="setting">
               <div class="setting-icon">
                 <img src="setting.svg" alt="account icon" width="20px" />

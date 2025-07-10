@@ -151,6 +151,7 @@ footer {
   margin: 0 2rem;
   padding: 2rem;
   border-block-start: 2px solid var(--other-color);
+  text-align: center;
 }
 
 .display {
@@ -190,11 +191,39 @@ footer {
   filter: drop-shadow(0 0 0.5rem var(--other-color));
   top: 0;
   bottom: 0;
-  right: 0;
   inline-size: 0rem;
   overflow: hidden;
   transition: all 0.1s;
   z-index: 4;
+  display: flex;
+  flex-direction: column;
+}
+
+.wishlist,
+.cart {
+  right: 0;
+}
+
+.menu {
+  left: 0;
+  background-color: #fff;
+  color: #000;
+}
+
+.header {
+  background-color: var(--primary-color);
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+}
+
+.header h3 {
+  flex: 1;
+}
+
+.header button {
+  background-color: transparent;
+  border: none;
 }
 
 .opened {
@@ -211,11 +240,11 @@ footer {
 
 @media screen and (max-width: 600px) {
   .opened {
-    left: 0;
+    inline-size: 100vw;
   }
 
   nav {
-    display: none;  
+    display: none;
   }
 
   .menu-button {
@@ -243,4 +272,50 @@ footer {
   .cta-write-up h2 {
     font-size: 1rem;
   }
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.menu-content ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.shop-menu > div,
+.menu-content li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu-content li[class="not-drop-down"] {
+  padding: 1rem;
+  transition: all 0.1s;
+}
+
+.shop-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+
+.shop-menu > div > p {
+  padding: 1rem 0;
+}
+
+.menu-drop-down {
+  block-size: 0;
+  background-color: #f7f7f7;
+  overflow: hidden;
+  transition: all 0.25s;
+}
+
+.dropdown-opened {
+  block-size: 15rem;
 }

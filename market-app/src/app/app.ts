@@ -41,7 +41,7 @@ export class App {
     }
   }
 
-  sell = false;
+  sell = true;
 
   openThemeMenu() {
     const themeMenu = document.querySelector('.theme-container');
@@ -259,6 +259,14 @@ export class App {
     }
   }
 
+  openMenuDropDown() {
+    const dropdown = document.querySelector('.menu-drop-down');
+
+    if (dropdown) {
+      dropdown.classList.toggle('dropdown-opened');
+    }
+  }
+
   closeMenu() {
     const menu = document.querySelector('.menu');
     const modalBackground = document.querySelector(
@@ -270,6 +278,16 @@ export class App {
       menu.classList.remove('opened');
       modalBackground.style.display = 'none';
       body.classList.remove('no-scroll');
+    }
+
+    this.closeShopMenu();
+  }
+
+  closeShopMenu() {
+    const dropdown = document.querySelector('.menu-drop-down');
+
+    if (dropdown) {
+      dropdown.classList.remove('dropdown-opened');
     }
   }
 

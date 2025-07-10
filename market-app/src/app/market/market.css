@@ -4,67 +4,10 @@
   flex-direction: column;
 }
 
-.header {
-  display: flex;
-  position: sticky;
-  top: 5rem;
-  background-color: var(--background-color);
-  padding: 1rem 2rem;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid var(--primary-color);
-  z-index: 2;
-}
-
 .main {
   flex: 1;
   display: flex;
   flex-direction: column;
-}
-
-search {
-  background-color: var(--other-color);
-  inline-size: 90%;
-  display: flex;
-  align-items: center;
-  padding-inline-end: 0.5rem;
-  border: 1px solid var(--primary-color);
-  border-radius: 0.25rem;
-}
-
-.search-icon {
-  display: flex;
-  align-items: center;
-  margin: 0.8rem;
-}
-
-#search-icon {
-  transform: rotate(135deg);
-}
-
-search form {
-  inline-size: 100%;
-  block-size: 2rem;
-  display: flex;
-}
-
-search input {
-  flex: 1;
-  background-color: transparent;
-  color: var(--primary-text-color);
-  block-size: 100%;
-  border: none;
-}
-
-search input:focus {
-  outline: none;
-}
-
-search button {
-  block-size: 100%;
-  padding-inline: 0.5rem;
-  border: none;
-  border-radius: 0.25rem;
 }
 
 section > div {

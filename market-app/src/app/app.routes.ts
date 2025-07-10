@@ -3,6 +3,10 @@ import { HomeComponent } from './home-component/home-component';
 import { About } from './about/about';
 import { Market } from './market/market';
 import { Blog } from './blog/blog';
+import { Fashion } from './fashion/fashion';
+import { Electronic } from './electronic/electronic';
+import { Edible } from './edible/edible';
+import { SchoolAccessory } from './school-accessory/school-accessory';
 import { Sell } from './sell/sell';
 import { Signup } from './signup/signup';
 import { Login } from './login/login';
@@ -15,6 +19,10 @@ export const routes: Routes = [
   { path: 'about', component: About },
   { path: 'market', component: Market },
   { path: 'blog', component: Blog },
+  { path: 'fashion', component: Fashion },
+  { path: 'electronic', component: Electronic },
+  { path: 'edible', component: Edible },
+  { path: 'school-accessory', component: SchoolAccessory },
   { path: 'sell', component: Sell },
   { path: 'signup', component: Signup },
   { path: 'login', component: Login },
