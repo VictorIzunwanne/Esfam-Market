@@ -1,1 +1,71 @@
-<p>signup works!</p>
+<div class="body">
+  <section class="signup">
+    <div class="content">
+      <h3>Welcome to Esfam Market</h3>
+
+      <form (submit)="signup($event)">
+        <div class="sections">
+          <label for="first-name">First name</label>
+          <input
+            name="first-name"
+            id="first-name"
+            type="text"
+            required
+            maxlength="30"
+          />
+        </div>
+
+        <div class="sections">
+          <label for="last-name">Last name</label>
+          <input
+            id="last-name"
+            name="last-name"
+            type="text"
+            required
+            maxlength="30"
+          />
+        </div>
+
+        <div class="sections">
+          <label for="user-name">User name</label>
+          <input
+            name="user-name"
+            id="user-name"
+            type="text"
+            required
+            maxlength="30"
+          />
+        </div>
+
+        <div class="sections">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required />
+        </div>
+
+        <div class="gender">
+          <label for="gender">Gender</label>
+          <select name="gender" id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+
+        <div class="sections">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required />
+        </div>
+
+        <button type="submit" class="register-button">Register</button>
+      </form>
+
+      <p class="message"></p>
+
+      <div class="login">
+        <p>
+          Already have an account?
+          <span class="link-like" routerLink="/login">Login</span>
+        </p>
+      </div>
+    </div>
+  </section>
+</div>

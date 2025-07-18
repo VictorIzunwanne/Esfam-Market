@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,15 @@ import { RouterLink } from '@angular/router';
 export class App {
   protected title = 'Esfam Market';
 
-  constructor() {}
+  isAdmin() {
+    if (localStorage.getItem('isAdmin') === 'true') {
+      this.router.navigate(['/esfam-market-admin-panel']);
+    } else {
+      this.router.navigate(['/admin-login']);
+    }
+  }
+
+  constructor(private router: Router) {}
 
   closeDropDowns() {
     const dropMenu = document.querySelector('.dropdown-content');
@@ -41,7 +49,27 @@ export class App {
     }
   }
 
-  sell = true;
+  userName = localStorage.getItem('userName');
+  sell: Boolean = false;
+
+  loggedIn() {
+    const manageAcc = document.querySelector('.determine') as HTMLDivElement;
+    const userName = localStorage.getItem('userName');
+
+    if (manageAcc) {
+      const user = userName;
+
+      if (user) {
+        console.log(`You are logged in as ${userName}`);
+
+        manageAcc.innerText = 'Profile';
+        this.userName = userName;
+      } else {
+        manageAcc.innerText = 'Join Esfam Market';
+        this.userName = '';
+      }
+    }
+  }
 
   openThemeMenu() {
     const themeMenu = document.querySelector('.theme-container');
@@ -62,8 +90,6 @@ export class App {
       themeMenu.classList.remove('display');
     }
   }
-
-  // THEME FUNCTION
 
   setBackgroundColor(color: string) {
     document.documentElement.style.setProperty('--background-color', color);
@@ -291,7 +317,22 @@ export class App {
     }
   }
 
+  displayDetails(item: any) {
+    console.log(
+      'You are viewing an expanded version of this product',
+      item.name
+    );
+  }
+
   ngAfterViewInit() {
     this.storedThemeF();
+
+    const sellerPrevilege = localStorage.getItem('isSeller');
+
+    if (sellerPrevilege === 'true') {
+      this.sell = true;
+    } else {
+      this.sell = false;
+    }
   }
 }

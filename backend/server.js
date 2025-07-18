@@ -2,51 +2,50 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-dotenv.config();
-
 const app = express();
 
+dotenv.config();
 app.use(
   cors({
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
+app.use(express.json());
 
-const productSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  name: String,
-  category: String,
-  for: String,
-  description: String,
-  price: Number,
-  stock: Number,
-  sellerId: mongoose.Schema.Types.ObjectId,
-});
-
-const productModel = mongoose.model("products", productSchema);
-
-app.get("/products", async (req, res) => {
-  try {
-    const products = await productModel.find();
-    res.json(products);
-  } catch (err) {
-    console.log("Cannot fetch products", err);
-    res.status(500).json({ error: "Failed to fetch products" });
-  }
-});
+const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
+const addReview = require("./routes/productRoutes");
+const getSimilarProducts = require("./routes/similarProductsRoutes");
+const getLatestProducts = require("./routes/latestProductRoutes");
+const getCategories = require("./routes/categoryProducts");
+const logAdmin = require("./routes/adminRoutes");
+const AdminSchema = require("./routes/getAdminDataRoutes");
+const userLogin = require("./routes/loginRoutes");
+const userSignUp = require("./routes/signupRoutes");
 
 mongoose
-  .connect(process.env.mongoDbUrl)
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to MongoDB");
   })
-  .catch((error) => {
-    console.log("Could not connect to MongoDB", error);
+  .catch((err) => {
+    console.error("Error connecting to MongoDB", err);
   });
 
-app.listen(process.env.port, () => {
-  console.log(
-    `Server is started at http://localhost:${process.env.port}/products`
-  );
+app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/upload", uploadRoutes);
+app.use("/api/products", addReview);
+app.use("/api", getSimilarProducts);
+app.use("/api/latest-products", getLatestProducts);
+app.use("/api", getCategories);
+app.use("/api/admins", logAdmin);
+app.use("/api/admin-data", AdminSchema);
+app.use("/api/users/login", userLogin);
+app.use("/api/users/signup", userSignUp);
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server is started at http://192.168.15.213:${process.env.port}/api/`);
 });

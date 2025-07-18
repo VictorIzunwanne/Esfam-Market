@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-seller-dashboard',
   imports: [],
   templateUrl: './seller-dashboard.html',
-  styleUrl: './seller-dashboard.css'
+  styleUrl: './seller-dashboard.css',
 })
 export class SellerDashboard {
-
+  sell: Boolean = false;
 }

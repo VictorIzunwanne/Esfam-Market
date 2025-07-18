@@ -1,26 +1,324 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-market',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './market.html',
   styleUrl: './market.css',
 })
 export class Market {
   ngAfterViewInit() {
-    this.mostPurchasedProducts();
+    this.menProducts();
+    this.womenProducts();
+    this.fashionProducts();
+    this.electronicProducts();
+    this.edibleProducts();
+    this.schoolMaterials();
   }
 
-  products: any[] = [];
+  similarP: any[] = [];
+  reviews: any[] = [];
+  userName = localStorage.getItem('userName');
 
-  async mostPurchasedProducts() {
+  menProduct: any[] = [];
+  womenProduct: any[] = [];
+  fashionProduct: any[] = [];
+  electronicProduct: any[] = [];
+  edibleProduct: any[] = [];
+  schoolMaterial: any[] = [];
+
+  async menProducts() {
     try {
-      const response = await fetch('http://localhost:3000/products');
-      if (!response.ok) throw new Error(response.status.toString());
-      this.products = await response.json();
+      const response = await fetch('http://192.168.15.213:3000/api/products/men');
+      if (!response.ok) {
+        throw new Error(response.status.toString());
+      }
+      this.menProduct = await response.json();
     } catch (error) {
-      console.error('Cannot fetch most purchased products', error);
+      console.error('Cannot fetch Men products', error);
+    }
+  }
+
+  async womenProducts() {
+    try {
+      const response = await fetch('http://192.168.15.213:3000/api/products/women');
+      if (!response.ok) {
+        throw new Error(response.status.toString());
+      }
+      this.womenProduct = await response.json();
+    } catch (error) {
+      console.error('Cannot fetch Women products', error);
+    }
+  }
+
+  async fashionProducts() {
+    try {
+      const response = await fetch(
+        'http://192.168.15.213:3000/api/similar-products/fashion'
+      );
+      if (!response.ok) {
+        throw new Error(response.status.toString());
+      }
+      this.fashionProduct = await response.json();
+    } catch (error) {
+      console.error('Cannot fetch Fashion products', error);
+    }
+  }
+
+  async similarProducts(item: any) {
+    try {
+      const similarProduct = await fetch(
+        `http://192.168.15.213:3000/api/similar-products/${item.category}`
+      );
+
+      if (!similarProduct.ok) {
+        throw new Error(similarProduct.status.toString());
+      }
+
+      const result = await similarProduct.json();
+      this.similarP = result;
+
+    } catch (error) {
+      console.error(
+        `Cannot fetch products similar to ${item.name} at the moment`
+      );
+    }
+  }
+
+  async electronicProducts() {
+    try {
+      const response = await fetch(
+        'http://192.168.15.213:3000/api/similar-products/electronic'
+      );
+      if (!response.ok) {
+        throw new Error(response.status.toString());
+      }
+      this.electronicProduct = await response.json();
+    } catch (error) {
+      console.error('Cannot fetch Electronic products', error);
+    }
+  }
+
+  async edibleProducts() {
+    try {
+      const response = await fetch(
+        'http://192.168.15.213:3000/api/similar-products/edible'
+      );
+      if (!response.ok) {
+        throw new Error(response.status.toString());
+      }
+      this.edibleProduct = await response.json();
+    } catch (error) {
+      console.error('Cannot fetch Edible products', error);
+    }
+  }
+
+  async schoolMaterials() {
+    try {
+      const response = await fetch(
+        'http://192.168.15.213:3000/api/similar-products/school-material'
+      );
+      if (!response.ok) {
+        throw new Error(response.status.toString());
+      }
+      this.schoolMaterial = await response.json();
+    } catch (error) {
+      console.error('Cannot fetch School Materials', error);
+    }
+  }
+
+  displayDetails(item: any, e: Event) {
+    const modalBackground = document.querySelector(
+      '.modal-background'
+    ) as HTMLElement;
+    const detailsContainer = document.querySelector(
+      '.product-details-expand'
+    ) as HTMLDivElement;
+    const body = document.body;
+    const productName = document.querySelector('.names') as HTMLHeadElement;
+    const productId = document.querySelector('.product-id') as HTMLDivElement;
+    const displayingImage = document.querySelector(
+      '.displaying-image'
+    ) as HTMLDivElement;
+    const image1 = document.querySelector('.image1') as HTMLDivElement;
+    const image2 = document.querySelector('.image2') as HTMLDivElement;
+    const image3 = document.querySelector('.image3') as HTMLDivElement;
+    const aboutTheProduct = document.querySelector(
+      '.product-information'
+    ) as HTMLDivElement;
+    const price = document.querySelector('.displayed-price') as HTMLSpanElement;
+    const stockStatus = document.querySelector(
+      '.stock-status'
+    ) as HTMLDivElement;
+    const numberOfReview = document.querySelector(
+      '.number-of-reviews'
+    ) as HTMLDivElement;
+
+    if (
+      modalBackground &&
+      detailsContainer &&
+      body &&
+      productName &&
+      productId &&
+      displayingImage &&
+      image1 &&
+      image2 &&
+      image3 &&
+      aboutTheProduct &&
+      price &&
+      stockStatus &&
+      numberOfReview
+    ) {
+      modalBackground.style.display = 'flex';
+      detailsContainer.classList.add('show-product-details');
+      body.classList.add('no-scroll');
+      productName.innerText = item.name;
+      productId.innerText = item._id;
+      displayingImage.style.backgroundImage = `url('${item.primaryImage}')`;
+      image1.style.backgroundImage = `url('${item.primaryImage}')`;
+      image2.style.backgroundImage = `url('${item.secondaryImage}')`;
+      image3.style.backgroundImage = `url('${item.thirdImage}')`;
+      aboutTheProduct.innerText = item.description;
+      price.innerText = item.price;
+
+      if (item.stock > 20) {
+        stockStatus.innerText = 'In Stock';
+        stockStatus.style.color = 'green';
+      } else if (item.stock < 20 && item.stock > 9) {
+        stockStatus.innerText = 'Few stocks left';
+        stockStatus.style.color = 'orange';
+      } else if (item.stock < 9 && item.stock > 1) {
+        stockStatus.innerText = `${item.stock} items left`;
+        stockStatus.style.color = 'red';
+      } else if (item.stock == 1) {
+        stockStatus.innerText = `${item.stock} item left`;
+        stockStatus.style.color = 'red';
+      } else if (item.stock < 1) {
+        stockStatus.innerText = 'Out of stock';
+        stockStatus.style.color = 'red';
+      }
+
+      this.reviews = item.reviews;
+
+      numberOfReview.innerText = item.reviews.length;
+
+      this.similarProducts(item);
+    }
+  }
+
+  expandPrimaryImage() {
+    const image = document.querySelector('.displaying-image') as HTMLDivElement;
+
+    if (image) {
+      image.classList.toggle('image-expanded');
+    }
+  }
+
+  removeDetails() {
+    const modalBackground = document.querySelector(
+      '.modal-background'
+    ) as HTMLElement;
+    const detailsContainer = document.querySelector(
+      '.product-details-expand'
+    ) as HTMLDivElement;
+    const body = document.body;
+
+    if (modalBackground && detailsContainer && body) {
+      modalBackground.style.display = 'none';
+      detailsContainer.classList.remove('show-product-details');
+      body.classList.remove('no-scroll');
+    }
+  }
+
+  changeToPrimaryImage() {
+    const primaryImageContainer = document.querySelector(
+      '.image1'
+    ) as HTMLDivElement;
+
+    const displayingImage = document.querySelector(
+      '.displaying-image'
+    ) as HTMLDivElement;
+
+    if (primaryImageContainer && displayingImage) {
+      displayingImage.style.backgroundImage =
+        primaryImageContainer.style.backgroundImage;
+    }
+  }
+
+  changeToSecondaryImage() {
+    const secondaryImage = document.querySelector('.image2') as HTMLDivElement;
+    const displayingImage = document.querySelector(
+      '.displaying-image'
+    ) as HTMLDivElement;
+
+    if (secondaryImage && displayingImage) {
+      displayingImage.style.backgroundImage =
+        secondaryImage.style.backgroundImage;
+    }
+  }
+
+  changeToThirdImage() {
+    const thirdImage = document.querySelector('.image3') as HTMLDivElement;
+    const displayingImage = document.querySelector(
+      '.displaying-image'
+    ) as HTMLDivElement;
+
+    if (thirdImage && displayingImage) {
+      displayingImage.style.backgroundImage = thirdImage.style.backgroundImage;
+    }
+  }
+
+  async submitReview(e: Event) {
+    e.preventDefault();
+
+    const name = this.userName;
+    const textArea = document.querySelector(
+      '#write-review'
+    ) as HTMLTextAreaElement;
+    const product = document.querySelector('.product-id') as HTMLDivElement;
+    const productId = product.innerText;
+
+    if (textArea.value.length < 1) {
+      alert('Cannot send empty review. Please write something');
+
+      return;
+    }
+
+    if (textArea.value.length < 10) {
+      alert('Your review is too short. Write more.');
+
+      return;
+    }
+
+    if (name && textArea && productId) {
+      const review = {
+        customerName: name,
+        review: textArea.value,
+      };
+
+      try {
+        const submitReview = await fetch(
+          `http://192.168.15.213:3000/api/products/${productId}/reviews`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(review),
+          }
+        );
+
+        if (!submitReview.ok) {
+          throw new Error('Something went wrong somewhere');
+        }
+
+        alert('Your review have been added, Thanks for the review!');
+        textArea.value = '';
+      } catch (err) {
+        console.error('An error occured', err);
+      }
     }
   }
 }

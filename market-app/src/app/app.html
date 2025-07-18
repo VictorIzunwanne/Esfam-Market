@@ -74,15 +74,15 @@
           </div>
         </li>
         <li class="not-drop-down" routerLink="/market" (click)="closeMenu()">
-          <img src="store.svg" alt="store icon">
+          <img src="store.svg" alt="store icon" />
           <p>Market</p>
         </li>
         <li class="not-drop-down" routerLink="/blog" (click)="closeMenu()">
-          <img src="blog.svg" alt="blog icon">
+          <img src="blog.svg" alt="blog icon" />
           <p>Blog</p>
         </li>
         <li class="not-drop-down" routerLink="/about" (click)="closeMenu()">
-          <img src="about.svg" alt="about icon">
+          <img src="about.svg" alt="about icon" />
           <p>About</p>
         </li>
       </ul>
@@ -128,7 +128,7 @@
     </nav>
 
     <div class="header-buttons">
-      <div class="sell-button" [routerLink]="sell ? 'sell' : 'login'">
+      <div class="sell-button" [routerLink]="sell ? 'sell' : 'seller-register'">
         <p>Sell</p>
       </div>
 
@@ -167,19 +167,19 @@
         <img src="cart.svg" alt="theme icon" width="20px" />
       </button>
 
-      <button type="button" (click)="openAccountMenu()">
+      <button type="button" (click)="openAccountMenu()" (click)="loggedIn()">
         <img src="account.svg" alt="theme icon" width="20px" />
 
         <div class="account-container">
           <ul>
-            <li>
+            <li [routerLink]="userName ? '/profile' : '/login'">
               <div class="account-icon">
                 <img src="create-account.svg" alt="account icon" width="20px" />
               </div>
-              <div>Join Esfam Market</div>
+              <div class="determine">Join Esfam Market</div>
             </li>
 
-            <li [routerLink]="sell ? 'sell' : 'login'">
+            <li [routerLink]="sell ? 'sell' : 'seller-register'">
               <div class="sell-icon">
                 <img src="sell.svg" alt="account icon" width="20px" />
               </div>
@@ -202,5 +202,8 @@
     <router-outlet></router-outlet>
   </main>
 
-  <footer>&copy;All rights reserved. | Esfam Market 2025</footer>
+  <footer>
+    <p>&copy;All rights reserved. | Esfam Market 2025</p>
+    <span><p (click)="isAdmin()">Admin Panel</p></span>
+  </footer>
 </div>

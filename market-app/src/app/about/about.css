@@ -4,4 +4,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 5rem;
 }

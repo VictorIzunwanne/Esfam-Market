@@ -6,10 +6,38 @@
 
 .sell-section {
   background-color: var(--background-color) !important;
+  background-image: url(../../../public/upload.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.sell-write-up {
+  position: absolute;
+  background-color: #00000062;
+  color: #fff;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   padding: 1rem;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.sell-write-up > button {
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.sell-write-up > button:hover {
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
 }
 
 .product-preview {
@@ -26,19 +54,6 @@
 
 .opened {
   inline-size: 30rem;
-}
-
-.preview-button {
-  position: absolute;
-  top: 2rem;
-  left: -3rem;
-  border: none;
-  border-radius: 2rem 0 0 2rem;
-  block-size: 3rem;
-  inline-size: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .button-inside {
@@ -95,7 +110,6 @@
 }
 
 .upload-content {
-  padding: 1rem;
   gap: 1rem;
   flex: 1;
   display: flex;
@@ -118,7 +132,7 @@
   border-radius: 0.5rem;
   inline-size: 30rem;
   background-color: var(--other-color);
-  min-block-size: 30rem;
+  min-block-size: 20rem;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -187,10 +201,25 @@ textarea {
 }
 
 .preview-product-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: #000;
   min-inline-size: 15rem;
   min-block-size: 10rem;
   border-radius: 0.5rem;
+}
+
+.preview-product-details {
+  text-align: center;
+}
+
+.product-information {
+  text-align: center;
+}
+
+.product-information p {
+  margin-block-end: 1rem;
 }
 
 .preview-product-price {
@@ -205,10 +234,18 @@ textarea {
   gap: 1rem;
 }
 
+.preview-product-category,
 .preview-product-description {
   inline-size: 100%;
   gap: 1rem;
   margin-block: 1rem 0 !important;
+  text-align: center;
+}
+
+.preview-product-category {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .upload-finished-product {

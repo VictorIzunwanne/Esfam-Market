@@ -5,7 +5,7 @@
   --other-color: #f7f7f7;
   --primary-text-color: #000;
   --secondary-text-color: #fff;
-  --other-text-color: #b6b6b6;
+  --other-text-color: rgb(163, 163, 163);
 }
 
 html {
@@ -101,7 +101,11 @@ section:nth-child(odd) {
 }
 
 .image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: #000;
+  border: 2px solid var(--primary-color);
   block-size: 10rem;
   inline-size: 100%;
   border-radius: 0.5rem;
@@ -190,4 +194,30 @@ input,
 textarea {
   padding: 1rem;
   font-size: 1rem;
+}
+
+.open-details {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  inline-size: 90vw;
+  block-size: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  background-color: var(--other-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  z-index: 3;
+}
+
+.open-details::-webkit-scrollbar {
+  display: none;
+}
+
+select:focus,
+input:focus {
+  outline: 3px solid var(--primary-color);
 }

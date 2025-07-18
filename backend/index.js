@@ -35,4 +35,4 @@ app.post("/upload", upload.array("files", 10), async (req, res) => {
   }
 });
 
-app.listen(3060, () => console.log("Server running on http://localhost:3060"));
+app.listen(3060, () => console.log("Server running on http://192.168.15.213:3060"));

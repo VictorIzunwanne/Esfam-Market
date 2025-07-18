@@ -1,16 +1,19 @@
 <div class="body">
   <section class="sell-section">
-    <h2>Product Upload Portal</h2>
-    <p>
-      Effortlessly add your products to Esfam Market in just a few simple steps.
-    </p>
-    <button
-      type="button"
-      class="start-uploading other-button"
-      (click)="startUpload()"
-    >
-      Begin Upload
-    </button>
+    <div class="sell-write-up">
+      <h2>Product Upload Portal</h2>
+      <p>
+        Effortlessly add your products to Esfam Market in just a few simple
+        steps.
+      </p>
+      <button
+        type="button"
+        class="start-uploading other-button"
+        (click)="startUpload()"
+      >
+        Begin Upload
+      </button>
+    </div>
 
     <div class="upload-form">
       <div class="header">
@@ -34,7 +37,7 @@
               id="product-name"
               name="product-name"
               maxlength="50"
-              placeholder="e.g., Baggy Jeans"
+              placeholder="Enter product name"
               required
             />
             <button type="submit" class="submit-button submit-name">
@@ -48,6 +51,8 @@
               name="product-description"
               id="product-description"
               disabled
+              placeholder="Enter product description"
+              required
             ></textarea>
             <button
               type="submit"
@@ -65,6 +70,8 @@
                 type="number"
                 name="product-price"
                 id="product-price"
+                required
+                placeholder="Enter product price"
                 disabled
               />
             </div>
@@ -75,6 +82,8 @@
                 type="number"
                 name="product-stock"
                 id="product-stock"
+                required
+                placeholder="Enter stock value"
                 disabled
               />
             </div>
@@ -83,7 +92,7 @@
             </button>
           </form>
 
-          <form>
+          <form (submit)="images($event)">
             <label for="product-category">Product Category</label>
             <select name="categories" id="categories" disabled>
               <option value="fashion">Fashion</option>
@@ -96,6 +105,7 @@
             <select name="gender" id="gender" disabled>
               <option value="men">Men</option>
               <option value="women">Women</option>
+              <option value="both">Both</option>
             </select>
 
             <button type="submit" class="submit-category" disabled>
@@ -103,9 +113,10 @@
             </button>
           </form>
 
-          <form>
+          <form (submit)="submitImage($event)">
             <label for="primaryImage">Primary Image</label>
             <input
+              (change)="changePrimaryImage($event)"
               type="file"
               name="primaryImage"
               id="primaryImage"
@@ -115,6 +126,7 @@
             />
             <label for="secondaryImage">Secondary Image</label>
             <input
+              (change)="changeSecondaryImage($event)"
               type="file"
               name="secondaryImage"
               id="secondaryImage"
@@ -124,6 +136,7 @@
             />
             <label for="thirdImage">Third Image</label>
             <input
+              (change)="changeThirdImage($event)"
               type="file"
               name="thirdImage"
               id="thirdImage"
@@ -144,8 +157,13 @@
             <div class="preview-product">
               <div class="preview-product-image primary-image"></div>
               <div class="preview-product-details">
-                <div class="preiew-product-name">Body Cream</div>
-                <div class="preview-product-price">₦ <span>5,000</span></div>
+                <div class="preiew-product-name"></div>
+                <div class="preview-product-price">
+                  ₦ <span class="pri"></span>
+                </div>
+                <div class="preview-product-stock">
+                  <span class="sto"></span>
+                </div>
               </div>
             </div>
 
@@ -153,21 +171,31 @@
 
             <div class="product-information">
               <div class="preview-product-image secondary-image"></div>
+              <p>Secondary Image</p>
               <div class="preview-product-image third-image"></div>
+              <p>Third Image</p>
             </div>
 
             <div class="preview-product-description">
               <h4>Description</h4>
 
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero
-                maiores modi repellat iste laborum in quo facilis mollitia
-                dolorem soluta? Tenetur laboriosam mollitia maiores voluptatum
-                optio in hic, ad nulla.
-              </p>
+              <p class="desc"></p>
             </div>
 
-            <button type="button" class="upload-finished-product">
+            <div class="preview-product-category">
+              <h4>Category</h4>
+
+              <p class="cat"></p>
+              <p class="fo"></p>
+            </div>
+
+            <button
+              type="button"
+              class="upload-finished-product"
+              (click)="uploadProduct()"
+              disabled
+              title="Submit all forms first"
+            >
               Submit
             </button>
           </div>

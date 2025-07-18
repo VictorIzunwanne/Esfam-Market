@@ -1,0 +1,67 @@
+<div class="body">
+  <section class="signup">
+    <div class="content">
+      <h3>Login as An Admin Of Esfam Market</h3>
+      <p>
+        Esfam market admins over-see the whole Esfam market and is able to
+        delete products, users blogs and have other control over other users.
+      </p>
+
+      <form (submit)="login($event)">
+        <div class="sections">
+          <label for="name">Admin name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            maxlength="30"
+            (focus)="inputColor()"
+          />
+        </div>
+
+        <div class="sections">
+          <label for="email">Admin email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            (focus)="inputColor()"
+          />
+        </div>
+
+        <div class="sections">
+          <label for="password">Admin Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            pattern="^(?=.*[A-Za-z])(?=.*\d).+$"
+            title="Password must contain both letters and numbers."
+            (focus)="inputColor()"
+          />
+        </div>
+
+        <button type="submit" class="register-button">Login</button>
+
+        <p class="message"></p>
+      </form>
+
+      <div class="login">
+        <p>
+          <span
+            >Note: You cannot register to become an Admin. You have to be added
+            manually by the developer. Want to be an Admin?
+            <a
+              class="link-like"
+              href="mailto:esfammarket@gmail.com?subject=I%20want%20to%20become%20an%20admin%20of%20esfam%20market&body=Hello%20Victor!%20I%20want%20to%20be%20an%20admin%20of%20esfam%20market.%20My%20name%20is%20"
+              >Message the exisiting admins to make you an admin</a
+            ></span
+          >
+        </p>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,648 +1,70 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Cloudinary Upload Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock</title>
 
     <style>
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        min-height: 100vh;
-        background: #f3f4f6;
-        font-family: "Segoe UI", Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-      .cta-section {
-        min-height: 100vh;
-        width: 100vw;
-        background: linear-gradient(120deg, #2563eb 0%, #1e293b 100%);
-        color: #fff;
-        border-radius: 0;
-        margin: 0;
-        box-shadow: none;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .cta-content {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        width: 100%;
-        max-width: 1200px;
-        gap: 2rem;
-        padding: 4rem 2rem;
-      }
-      .cta-text {
-        flex: 1 1 320px;
-        min-width: 280px;
-      }
-      .cta-text h1 {
-        font-size: 3.5rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        line-height: 1.1;
-      }
-      .cta-text p {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-        color: #e0e7ef;
-      }
-      .cta-button {
-        background: #fff;
-        color: #2563eb;
-        padding: 1.1rem 3rem;
-        font-size: 1.3rem;
-        font-weight: 700;
-        border-radius: 999px;
-        text-decoration: none;
-        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
-        transition: background 0.2s, color 0.2s;
-        border: none;
-        cursor: pointer;
-        display: inline-block;
-      }
-      .cta-button:hover {
-        background: #2563eb;
-        color: #fff;
-      }
-      .cta-image {
-        flex: 1 1 320px;
-        min-width: 220px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .cta-image img {
-        max-width: 420px;
-        width: 100%;
-        border-radius: 1rem;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-      }
-      .category-section {
-        background: #fff;
-        border-radius: 1.5rem;
-        margin: -5rem auto 2rem auto;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-        max-width: 1100px;
-        padding: 3rem 2rem 2rem 2rem;
-        position: relative;
-        z-index: 2;
-        top: -4rem;
-      }
-      .category-section h2 {
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        color: #1e293b;
-        text-align: center;
-      }
-      .categories {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        justify-content: center;
-        margin-top: 1.5rem;
-      }
-      .category {
-        background: #2563eb;
-        color: #fff;
-        padding: 1.2rem 2.5rem;
-        border-radius: 1rem;
-        font-size: 1.2rem;
-        font-weight: 600;
-        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
-        transition: background 0.2s, color 0.2s, transform 0.2s;
-        cursor: pointer;
-      }
-      .category:hover {
-        background: #1e293b;
-        color: #fff;
-        transform: translateY(-4px) scale(1.04);
-      }
-      .featured-products-section {
-        background: #fff;
-        border-radius: 1.5rem;
-        margin: 2rem auto;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-        max-width: 1100px;
-        padding: 3rem 2rem 2rem 2rem;
-      }
-      .featured-products-section h2 {
-        text-align: center;
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        color: #1e293b;
-      }
-      .featured-products {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-      }
-      .featured-product {
-        background: #f3f4f6;
-        border-radius: 1rem;
-        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.06);
-        padding: 1.5rem;
-        text-align: center;
-        width: 260px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .featured-product img {
-        width: 100%;
-        border-radius: 0.7rem;
-        margin-bottom: 1rem;
-      }
-      .featured-product h3 {
-        font-size: 1.2rem;
-        margin: 0.5rem 0 0.3rem 0;
-        color: #1e293b;
-      }
-      .featured-product .price {
-        color: #2563eb;
-        font-weight: 700;
-        margin-bottom: 1rem;
-      }
-      .testimonials-section {
-        background: #fff;
-        border-radius: 1.5rem;
-        margin: 2rem auto;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-        max-width: 1100px;
-        padding: 3rem 2rem 2rem 2rem;
-      }
-      .testimonials-section h2 {
-        text-align: center;
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        color: #1e293b;
-      }
-      .testimonials {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-      }
-      .testimonial {
-        background: #f3f4f6;
-        border-radius: 1rem;
-        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.06);
-        padding: 1.5rem 2rem;
-        width: 320px;
-        font-style: italic;
-        color: #1e293b;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .testimonial span {
-        font-style: normal;
-        font-weight: 600;
-        color: #2563eb;
-        margin-top: 1rem;
-        align-self: flex-end;
-      }
-      .faq-section {
-        background: #fff;
-        border-radius: 1.5rem;
-        margin: 2rem auto;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-        max-width: 1100px;
-        padding: 3rem 2rem 2rem 2rem;
-      }
-      .faq-section h2 {
-        text-align: center;
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        color: #1e293b;
-      }
-      .faqs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-      }
-      .faq {
-        background: #f3f4f6;
-        border-radius: 1rem;
-        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.06);
-        padding: 1.5rem 2rem;
-        width: 320px;
-      }
-      .faq h4 {
-        margin: 0 0 0.5rem 0;
-        color: #2563eb;
-      }
-      .faq p {
-        margin: 0;
-        color: #1e293b;
-      }
-      .footer-section {
-        background: #1e293b;
-        color: #fff;
-        padding: 2rem 0 1rem 0;
-        text-align: center;
-        margin-top: 3rem;
-      }
-      .footer-content {
-        max-width: 1100px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      .footer-content nav a {
-        color: #fff;
-        text-decoration: none;
-        margin: 0 0.5rem;
-        font-weight: 500;
-        transition: color 0.2s;
-      }
-      .footer-content nav a:hover {
-        color: #2563eb;
+      :root {
+        --primary-color: grey;
+        --secondary-color: red;
       }
 
-      .main-header {
-        width: 100vw;
-        background: linear-gradient(90deg, #2563eb 0%, #1e293b 100%);
-        box-shadow: 0 2px 8px rgba(30, 41, 59, 0.07);
+      html {
+        font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        font-size: 16px;
+      }
+
+      *,
+      *::after,
+      *::before {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        min-block-size: 100vh;
+        background-color: var(--primary-color);
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        padding: 1.2rem 2rem;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        border-bottom: 2px solid #2563eb22;
+        justify-content: center;
       }
-      .logo {
-        font-size: 2.2rem;
-        font-weight: 900;
-        color: #fff;
-        letter-spacing: 1px;
-        text-shadow: 0 2px 8px #2563eb33;
-      }
-      .logo span {
-        color: #2563eb;
-        background: #fff;
-        border-radius: 0.5rem;
-        padding: 0.1rem 0.5rem;
-        margin-left: 0.3rem;
-        font-weight: 800;
-        box-shadow: 0 2px 8px #2563eb22;
-      }
-      .main-nav {
+
+      .clock-container {
         display: flex;
-        gap: 2rem;
-        align-items: center;
+        gap: 1rem;
       }
-      .main-nav a {
-        color: #fff;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: color 0.2s, background 0.2s, box-shadow 0.2s;
-        padding: 0.5rem 1.2rem;
-        border-radius: 999px;
-      }
-      .main-nav a:hover,
-      .main-nav .cart-link:hover {
-        color: #2563eb;
-        background: #fff;
-        box-shadow: 0 2px 8px #2563eb22;
-      }
-      .cart-link {
-        background: #fff;
-        color: #2563eb;
-        font-weight: 700;
-        box-shadow: 0 2px 8px #2563eb22;
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-      }
-      .cart-icon {
-        font-size: 1.3rem;
-      }
-      .menu-toggle {
-        display: none;
-        background: none;
-        border: none;
-        font-size: 2rem;
-        color: #fff;
-        cursor: pointer;
-      }
-      @media (max-width: 900px) {
-        .cta-content {
-          flex-direction: column;
-          padding: 2.5rem 1rem;
-        }
-        .cta-text h1 {
-          font-size: 2.2rem;
-        }
-        .cta-image img {
-          max-width: 260px;
-        }
-        .main-header {
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 1rem 1rem;
-        }
-        .main-nav {
-          gap: 1.2rem;
-        }
-      }
-      @media (max-width: 600px) {
-        .cta-section {
-          min-height: 80vh;
-          padding: 0;
-        }
-        .cta-content {
-          padding: 1.2rem 0.5rem;
-        }
-        .cta-text h1 {
-          font-size: 1.3rem;
-        }
-        .cta-text p {
-          font-size: 1rem;
-        }
-        .cta-button {
-          font-size: 1rem;
-          padding: 0.7rem 1.5rem;
-        }
-        .cta-image img {
-          max-width: 140px;
-        }
-        .category-section,
-        .featured-products-section,
-        .testimonials-section,
-        .faq-section {
-          padding: 1.2rem 0.5rem 1rem 0.5rem;
-          border-radius: 0.7rem;
-        }
-        .category-section h2,
-        .featured-products-section h2,
-        .testimonials-section h2,
-        .faq-section h2 {
-          font-size: 1.2rem;
-        }
-        .categories,
-        .featured-products,
-        .testimonials,
-        .faqs {
-          gap: 0.7rem;
-        }
-        .category,
-        .featured-product,
-        .testimonial,
-        .faq {
-          font-size: 0.95rem;
-          padding: 0.7rem 1rem;
-        }
-        .main-header {
-          flex-direction: row;
-          padding: 0.7rem 0.7rem;
-        }
-        .logo {
-          font-size: 1.2rem;
-        }
-        .main-nav {
-          display: none;
-        }
-        .menu-toggle {
-          display: block;
-        }
+
+      .hour,
+      .minute,
+      .second {
+        background-color: red;
+        padding: 1rem;
+        border-radius: 1rem;
       }
     </style>
   </head>
   <body>
-    <header class="main-header">
-      <div class="logo">Esfam <span>Market</span></div>
-      <nav class="main-nav">
-        <a href="/shop">Shop</a>
-        <a href="/sell">Sell</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-        <a href="#" class="cart-link"><span class="cart-icon">🛒</span> Cart</a>
-      </nav>
-      <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
-    </header>
-
-    <section class="cta-section">
-      <div class="cta-content">
-        <div class="cta-text">
-          <h1>Transform Your Campus Shopping</h1>
-          <p>
-            Shop the best deals, discover unique products, and support fellow
-            students. Fast, secure, and made just for you!
-          </p>
-          <a href="/shop" class="cta-button">Start Shopping</a>
-        </div>
-        <div class="cta-image">
-          <img
-            src="https://res.cloudinary.com/dqmfnubj5/image/upload/v1751378735/products/1751378731773-2025-05-30%20%289%29.png.jpg"
-            alt="Shop Now"
-          />
-        </div>
+    <div class="clock-container">
+      <div class="hour">
+        <div class="hours"></div>
+        <div class="hours"></div>
       </div>
-    </section>
-    <section class="category-section">
-      <h2>Shop by Category</h2>
-      <div class="categories">
-        <div class="category">Fashion</div>
-        <div class="category">Electronics</div>
-        <div class="category">Edibles</div>
-        <div class="category">School Supplies</div>
-        <div class="category">Books</div>
-        <div class="category">Accessories</div>
-        <div class="category">Sports</div>
-        <div class="category">Others</div>
+
+      <div class="minute">
+        <div class="minutes"></div>
+        <div class="minutes"></div>
       </div>
-    </section>
 
-    <h2>Upload Product Images</h2>
-
-    <input type="file" id="fileInput" multiple />
-    <button onclick="uploadFiles()">Upload</button>
-
-    <div id="result"></div>
-    <p>
-      You can select and upload multiple images at once. Hold
-      <strong>Ctrl</strong> (Windows) or <strong>Cmd</strong> (Mac) while
-      clicking to select multiple files.
-    </p>
-    <section class="featured-products-section">
-      <h2>Featured Products</h2>
-      <div class="featured-products">
-        <div class="featured-product">
-          <img
-            src="https://images.unsplash.com/photo-1513708927688-890fe8c7b8c3?auto=format&fit=crop&w=400&q=80"
-            alt="Product 1"
-          />
-          <h3>Trendy Backpack</h3>
-          <p class="price">₦7,500</p>
-          <button class="cta-button">View Product</button>
-        </div>
-        <div class="featured-product">
-          <img
-            src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80"
-            alt="Product 2"
-          />
-          <h3>Wireless Headphones</h3>
-          <p class="price">₦12,000</p>
-          <button class="cta-button">View Product</button>
-        </div>
-        <div class="featured-product">
-          <img
-            src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=400&q=80"
-            alt="Product 3"
-          />
-          <h3>Classic Sneakers</h3>
-          <p class="price">₦15,000</p>
-          <button class="cta-button">View Product</button>
-        </div>
+      <div class="second">
+        <div class="seconds"></div>
+        <div class="seconds"></div>
       </div>
-    </section>
-    <section class="testimonials-section">
-      <h2>What Students Say</h2>
-      <div class="testimonials">
-        <div class="testimonial">
-          <p>
-            “This platform made it so easy to buy and sell on campus. Highly
-            recommended!”
-          </p>
-          <span>- Ada, 300L</span>
-        </div>
-        <div class="testimonial">
-          <p>
-            “I found everything I needed for school at great prices. The process
-            was smooth!”
-          </p>
-          <span>- Chinedu, 200L</span>
-        </div>
-        <div class="testimonial">
-          <p>“Selling my old books was quick and hassle-free. Love it!”</p>
-          <span>- Maryam, 400L</span>
-        </div>
-      </div>
-    </section>
-    <section class="faq-section">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faqs">
-        <div class="faq">
-          <h4>How do I list a product for sale?</h4>
-          <p>
-            Sign up, go to your dashboard, and click “Add Product” to upload
-            details and images.
-          </p>
-        </div>
-        <div class="faq">
-          <h4>Is it free to use?</h4>
-          <p>Yes! There are no fees for buying or selling on this platform.</p>
-        </div>
-        <div class="faq">
-          <h4>How do I contact a seller?</h4>
-          <p>
-            Each product page has a “Contact Seller” button for direct
-            messaging.
-          </p>
-        </div>
-      </div>
-    </section>
-    <footer class="footer-section">
-      <div class="footer-content">
-        <p>&copy; 2025 Esfam Market. All rights reserved.</p>
-        <nav>
-          <a href="/shop">Shop</a> | <a href="/sell">Sell</a> |
-          <a href="/about">About</a> |
-          <a href="/contact">Contact</a>
-        </nav>
-      </div>
-    </footer>
-    <script>
-      async function compressImage(file, quality = 0.7, maxWidth = 1024) {
-        return new Promise((resolve) => {
-          const img = new Image();
-          img.onload = () => {
-            // Resize if needed
-            const scale = Math.min(1, maxWidth / img.width);
-            const width = img.width * scale;
-            const height = img.height * scale;
-            const canvas = document.createElement("canvas");
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0, width, height);
-            canvas.toBlob((blob) => resolve(blob), "image/jpeg", quality);
-          };
-          img.src = URL.createObjectURL(file);
-        });
-      }
-
-      async function uploadFiles() {
-        const input = document.getElementById("fileInput");
-        const files = input.files;
-
-        if (!files.length) {
-          alert("No files selected.");
-          return;
-        }
-
-        const formData = new FormData();
-        for (let file of files) {
-          // Only compress images
-          if (file.type.startsWith("image/")) {
-            const compressed = await compressImage(file, 0.7, 1024); // 70% quality, max width 1024px
-            formData.append("files", compressed, file.name);
-          } else {
-            formData.append("files", file);
-          }
-        }
-
-        // ...rest of your upload code remains the same
-        try {
-          const response = await fetch("http://localhost:3060/upload", {
-            method: "POST",
-            body: formData,
-          });
-
-          const data = await response.json();
-
-          // Show uploaded URLs
-          const resultDiv = document.getElementById("result");
-          resultDiv.innerHTML = "<h3>Uploaded Images:</h3>";
-          data.forEach((img) => {
-            resultDiv.innerHTML += `<p><a href="${img.secure_url}" target="_blank">${img.secure_url}</a></p>`;
-            resultDiv.innerHTML += `<img src="${img.secure_url}" width="200"><hr/>`;
-          });
-        } catch (err) {
-          alert("Upload failed.");
-          console.error(err);
-        }
-      }
-
-      // Responsive nav toggle
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.querySelector(".menu-toggle");
-        const mainNav = document.querySelector(".main-nav");
-        if (menuToggle && mainNav) {
-          menuToggle.addEventListener("click", () => {
-            mainNav.style.display =
-              mainNav.style.display === "flex" ? "none" : "flex";
-          });
-        }
-      });
-    </script>
+    </div>
   </body>
 </html>

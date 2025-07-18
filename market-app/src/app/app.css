@@ -152,6 +152,14 @@ footer {
   padding: 2rem;
   border-block-start: 2px solid var(--other-color);
   text-align: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+footer span p {
+  color: var(--primary-color);
+  padding: 0 0.5rem;
+  cursor: pointer;
 }
 
 .display {
@@ -285,6 +293,10 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.menu-drop-down {
+  margin: 0 2rem;
 }
 
 .shop-menu > div,

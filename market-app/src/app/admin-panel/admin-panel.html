@@ -1,0 +1,69 @@
+<div class="body">
+  <section class="admin-panel">
+    <div class="header">
+      <h3>Admin Panel</h3>
+
+      <div class="header-icons">
+        <button
+          type="button"
+          class="reports header-buttons"
+          (click)="fufilReq('reports')"
+        >
+          Reports: <span class="reports-count">0</span>
+        </button>
+        <button
+          type="button"
+          class="messages header-buttons"
+          (click)="fufilReq('messages')"
+        >
+          Messages: <span class="messages-count">0</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="side-bar">
+        <h3>Manage Esfam Market</h3>
+
+        <ul>
+          <li (click)="fufilReq('users')">
+            <span><img src="admin-users.svg" alt="user icon" /></span>
+            <p class="sidebar-para">Users</p>
+          </li>
+          <li (click)="fufilReq('products')">
+            <span><img src="admin-products.svg" alt="product icon" /></span>
+            <p class="sidebar-para">Products</p>
+          </li>
+          <li (click)="fufilReq('blogs')">
+            <span><img src="admin-blog.svg" alt="blog icon" /></span>
+            <p class="sidebar-para">Blogs</p>
+          </li>
+          <li (click)="fufilReq('trash')">
+            <span><img src="trash.svg" alt="trash icon" /></span>
+            <p class="sidebar-para">Trash</p>
+          </li>
+          <li>
+            <span><img src="admin-setting.svg" alt="setting icon" /></span>
+            <p class="sidebar-para">Site Setting</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="main-content">
+        <div class="main-content-header">
+          <h3 class="admin-setting-active"></h3>
+        </div>
+
+        <div class="main-content-content">
+          @for(item of list; track item._id ) {
+          <div class="category-or-gender">
+            {{ item.category || item.gender }}
+          </div>
+          <div class="adminReq"></div>
+          <div class="items">{{ item.name || item.firstName }}</div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

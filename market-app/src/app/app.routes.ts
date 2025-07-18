@@ -3,14 +3,21 @@ import { HomeComponent } from './home-component/home-component';
 import { About } from './about/about';
 import { Market } from './market/market';
 import { Blog } from './blog/blog';
+import { Men } from './men/men';
+import { Women } from './women/women';
 import { Fashion } from './fashion/fashion';
 import { Electronic } from './electronic/electronic';
 import { Edible } from './edible/edible';
 import { SchoolAccessory } from './school-accessory/school-accessory';
 import { Sell } from './sell/sell';
+import { BecomeSeller } from './become-seller/become-seller';
+import { SellerDashboard } from './seller-dashboard/seller-dashboard';
 import { Signup } from './signup/signup';
 import { Login } from './login/login';
+import { UserProfile } from './user-profile/user-profile';
 import { Setting } from './setting/setting';
+import { AdminPanel } from './admin-panel/admin-panel';
+import { AdminLogin } from './admin-login/admin-login';
 import { Notfound } from './notfound/notfound';
 
 export const routes: Routes = [
@@ -19,13 +26,20 @@ export const routes: Routes = [
   { path: 'about', component: About },
   { path: 'market', component: Market },
   { path: 'blog', component: Blog },
+  { path: 'men', component: Men },
+  { path: 'women', component: Women },
   { path: 'fashion', component: Fashion },
   { path: 'electronic', component: Electronic },
   { path: 'edible', component: Edible },
   { path: 'school-accessory', component: SchoolAccessory },
   { path: 'sell', component: Sell },
+  { path: 'seller-register', component: BecomeSeller },
+  { path: 'dashboard', component: SellerDashboard },
   { path: 'signup', component: Signup },
   { path: 'login', component: Login },
+  { path: 'profile', component: UserProfile },
   { path: 'setting', component: Setting },
+  { path: 'esfam-market-admin-panel', component: AdminPanel },
+  { path: 'admin-login', component: AdminLogin },
   { path: '**', component: Notfound },
 ];

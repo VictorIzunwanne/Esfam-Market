@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="body">
+  <section class="signup">
+    <div class="content">
+      <h3>Welcome Back!</h3>
+
+      <form (submit)="userLogin($event)">
+        <div class="sections">
+          <label for="user-name">User name</label>
+          <input
+            id="user-name"
+            name="user-name"
+            type="text"
+            required
+            maxlength="30"
+          />
+        </div>
+
+        <div class="sections">
+          <label for="email">email</label>
+          <input type="email" name="email" id="email" required />
+        </div>
+
+        <div class="sections">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required />
+        </div>
+
+        <button type="submit" class="register-button">Login</button>
+      </form>
+
+      <p class="message"></p>
+
+      <div class="login">
+        <p>
+          Don't have an account?
+          <span class="link-like" routerLink="/signup">Sign Up</span>
+        </p>
+      </div>
+    </div>
+  </section>
+</div>

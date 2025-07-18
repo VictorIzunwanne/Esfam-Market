@@ -19,15 +19,19 @@
 
         <div class="men-products contents">
           <div class="products">
-            @for (item of products; track item._id) {
+            @for (item of menProduct; track item._id) {
             <div class="product">
-              <div class="image"></div>
+              <div
+                class="image"
+                style="background-image: url('{{ item.primaryImage }}')"
+                (click)="displayDetails( item, $event )"
+              ></div>
               <div class="details">
                 <p>{{ item.name || 'Unnamed Product' }}</p>
                 <p class="price">
                   ₦<span>{{ item.price.toLocaleString()}}</span>
                 </p>
-                <button class="other-button">Add to cart</button>
+                <button type="button" class="other-button">Add to cart</button>
               </div>
             </div>
             }
@@ -45,15 +49,19 @@
 
         <div class="women-products contents">
           <div class="products">
-            @for (item of products; track item._id) {
+            @for (item of womenProduct; track item._id) {
             <div class="product">
-              <div class="image"></div>
+              <div
+                class="image"
+                style="background-image: url('{{ item.primaryImage }}')"
+                (click)="displayDetails( item, $event )"
+              ></div>
               <div class="details">
                 <p>{{ item.name || 'Unnamed Product' }}</p>
                 <p class="price">
                   ₦<span>{{ item.price.toLocaleString()}}</span>
                 </p>
-                <button class="other-button">Add to cart</button>
+                <button type="button" class="other-button">Add to cart</button>
               </div>
             </div>
             }
@@ -71,15 +79,19 @@
 
         <div class="fashion-products contents">
           <div class="products">
-            @for (item of products; track item._id) {
+            @for (item of fashionProduct; track item._id) {
             <div class="product">
-              <div class="image"></div>
+              <div
+                class="image"
+                style="background-image: url('{{ item.primaryImage }}')"
+                (click)="displayDetails( item, $event )"
+              ></div>
               <div class="details">
                 <p>{{ item.name || 'Unnamed Product' }}</p>
                 <p class="price">
                   ₦<span>{{ item.price.toLocaleString()}}</span>
                 </p>
-                <button class="other-button">Add to cart</button>
+                <button type="button" class="other-button">Add to cart</button>
               </div>
             </div>
             }
@@ -97,15 +109,19 @@
 
         <div class="electronic-products contents">
           <div class="products">
-            @for (item of products; track item._id) {
+            @for (item of electronicProduct; track item._id) {
             <div class="product">
-              <div class="image"></div>
+              <div
+                class="image"
+                style="background-image: url('{{ item.primaryImage }}')"
+                (click)="displayDetails( item, $event )"
+              ></div>
               <div class="details">
                 <p>{{ item.name || 'Unnamed Product' }}</p>
                 <p class="price">
                   ₦<span>{{ item.price.toLocaleString()}}</span>
                 </p>
-                <button class="other-button">Add to cart</button>
+                <button type="button" class="other-button">Add to cart</button>
               </div>
             </div>
             }
@@ -123,15 +139,19 @@
 
         <div class="edible-products contents">
           <div class="products">
-            @for (item of products; track item._id) {
+            @for (item of edibleProduct; track item._id) {
             <div class="product">
-              <div class="image"></div>
+              <div
+                class="image"
+                style="background-image: url('{{ item.primaryImage }}')"
+                (click)="displayDetails( item, $event )"
+              ></div>
               <div class="details">
                 <p>{{ item.name || 'Unnamed Product' }}</p>
                 <p class="price">
                   ₦<span>{{ item.price.toLocaleString()}}</span>
                 </p>
-                <button class="other-button">Add to cart</button>
+                <button type="button" class="other-button">Add to cart</button>
               </div>
             </div>
             }
@@ -149,15 +169,19 @@
 
         <div class="school-material-products contents">
           <div class="products">
-            @for (item of products; track item._id) {
+            @for (item of schoolMaterial; track item._id) {
             <div class="product">
-              <div class="image"></div>
+              <div
+                class="image"
+                style="background-image: url('{{ item.primaryImage }}')"
+                (click)="displayDetails( item, $event )"
+              ></div>
               <div class="details">
                 <p>{{ item.name || 'Unnamed Product' }}</p>
                 <p class="price">
                   ₦<span>{{ item.price.toLocaleString()}}</span>
                 </p>
-                <button class="other-button">Add to cart</button>
+                <button type="button" class="other-button">Add to cart</button>
               </div>
             </div>
             }
@@ -165,5 +189,132 @@
         </div>
       </div>
     </section>
+  </div>
+
+  <div class="product-details-expand">
+    <div class="header">
+      <div class="clicked-product-name">
+        <h3 class="names"></h3>
+      </div>
+      <div class="product-id"></div>
+
+      <button
+        type="button"
+        class="close-product-details-expand"
+        (click)="removeDetails()"
+      >
+        <img src="close.svg" alt="close" />
+      </button>
+    </div>
+
+    <div class="content">
+      <div class="about-product">
+        <div class="images">
+          <div class="displaying-image" (click)="expandPrimaryImage()"></div>
+
+          <div class="available-images">
+            <div class="image1" (click)="changeToPrimaryImage()"></div>
+            <div class="image2" (click)="changeToSecondaryImage()"></div>
+            <div class="image3" (click)="changeToThirdImage()"></div>
+          </div>
+        </div>
+
+        <div class="about-the-product">
+          <div class="product-main-description">
+            <h3>Description</h3>
+            <div class="product-information"></div>
+          </div>
+
+          <div class="product-price">
+            ₦ <span class="displayed-price"></span>
+          </div>
+
+          <div class="stock-status"></div>
+
+          <div class="product-ui-buttons">
+            <button type="button">
+              <img src="wishlist.svg" alt="Add to wishlist" />
+            </button>
+            <button type="button">Add to cart</button>
+            <div class="numbers-btns">
+              <button type="button" class="numbers minus">-</button>
+              <button type="button" class="numbers">1</button>
+              <button type="button" class="numbers plus">+</button>
+            </div>
+            <button type="button" class="gift">Buy as a gift</button>
+            <button type="button" class="report">Report this product</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="other-things">
+        <div class="similar-products">
+          <h3>Similar Products</h3>
+
+          <div class="similar-product-container">
+            @for (item of similarP; track item._id) {
+            <div class="product">
+              <div
+                class="image"
+                style="background-image: url('{{ item.primaryImage }}')"
+                (click)="displayDetails( item, $event )"
+              ></div>
+              <div class="details">
+                <p>{{ item.name || 'Unnamed Product' }}</p>
+                <p class="price">
+                  ₦<span>{{ item.price.toLocaleString()}}</span>
+                </p>
+                <button type="button" class="other-button">Add to cart</button>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="reviews">
+          <h3>
+            Reviews (
+            <div class="number-of-reviews"></div>
+            )
+          </h3>
+          <p class="note">Scroll to the bottom to write a review</p>
+
+          <div class="reviews-container">
+            @for (item of reviews; track item._id) {
+            <div class="review">
+              <div class="author-name">
+                <h4 class="author">{{ item.customerName }}</h4>
+              </div>
+              <div class="comments">{{ item.review }}</div>
+              <div class="timeOfWriting">
+                {{ item.createdAt | date: 'short' }}
+              </div>
+            </div>
+            }
+
+            <div class="write-a-review">
+              <form (submit)="submitReview($event)">
+                <label for="write-review">
+                  Write a review about this product.
+                  <span class="note">
+                    Note: Your review will not be visible until this page is
+                    reloaded.</span
+                  >
+                </label>
+                <textarea
+                  name="write-review"
+                  id="write-review"
+                  maxlength="500"
+                  placeholder="Write a review about this product"
+                ></textarea>
+                <button type="submit" class="submit-review">
+                  Submit Review
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
