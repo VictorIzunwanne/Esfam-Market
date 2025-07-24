@@ -121,7 +121,7 @@ exports.getUserCart = async (req, res) => {
 
 exports.deleteProductFromCart = async (req, res) => {
   try {
-    const userName = req.params.loggedUser;
+    const userName = req.params.userName;
     const itemId = req.body.itemId;
 
     const userExist = await User.findOne({ userName });
@@ -133,7 +133,7 @@ exports.deleteProductFromCart = async (req, res) => {
     }
 
     const productIndex = userExist.cart.findIndex(
-      (item) => item.productId === itemId
+      (item) => item.productId.toString() === itemId
     );
 
     if (productIndex === -1) {

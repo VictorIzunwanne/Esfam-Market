@@ -26,10 +26,6 @@ export class App {
 
     if (dropMenu) {
       dropMenu.classList.toggle('display');
-
-      setTimeout(() => {
-        dropMenu.classList.remove('display');
-      }, 5000);
     }
   }
 
@@ -54,10 +50,6 @@ export class App {
     if (themeMenu && accountMenu) {
       themeMenu.classList.toggle('display');
       accountMenu.classList.remove('display');
-
-      setTimeout(() => {
-        themeMenu.classList.remove('display');
-      }, 5000);
     }
   }
 
@@ -68,10 +60,6 @@ export class App {
     if (accountMenu && themeMenu) {
       accountMenu.classList.toggle('display');
       themeMenu.classList.remove('display');
-
-      setTimeout(() => {
-        accountMenu.classList.remove('display');
-      }, 5000);
     }
   }
 
@@ -341,7 +329,7 @@ export class App {
         }
 
         const thisUser = await fetch(
-          `http://localhost:3000/api/users/${user}/getCart`,
+          `http://192.168.118.213:3000/api/users/${user}/getCart`,
           {
             credentials: 'include',
           }
@@ -370,7 +358,7 @@ export class App {
       }
 
       const thisUser = await fetch(
-        `http://localhost:3000/api/users/${user}/getCart`,
+        `http://192.168.118.213:3000/api/users/${user}/getCart`,
         {
           credentials: 'include',
         }
@@ -394,7 +382,7 @@ export class App {
     try {
       const userName = localStorage.getItem('userName');
       const deleteItem = {
-        itemId: item._id,
+        itemId: item.productId,
         itemName: item.name,
       };
 
@@ -406,7 +394,7 @@ export class App {
       }
 
       const deleted = await fetch(
-        `http://localhost:3000/api/${userName}/cart`,
+        `http://192.168.118.213:3000/api/users/${userName}/cart`,
         {
           method: 'DELETE',
           headers: {
@@ -426,6 +414,8 @@ export class App {
 
       const done = await deleted.json();
       alert('product deleted from cart');
+
+      this.getUserCart();
     } catch (error) {
       console.error('Could not delete product from cart', error);
     }

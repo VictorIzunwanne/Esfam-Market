@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-market',
@@ -18,6 +18,8 @@ export class Market {
     this.schoolMaterials();
   }
 
+  constructor(private router: Router) {}
+
   similarP: any[] = [];
   reviews: any[] = [];
   userName = localStorage.getItem('userName');
@@ -31,7 +33,7 @@ export class Market {
 
   async menProducts() {
     try {
-      const response = await fetch('http://localhost:3000/api/products/men');
+      const response = await fetch('http://192.168.118.213:3000/api/products/men');
       if (!response.ok) {
         throw new Error(response.status.toString());
       }
@@ -43,7 +45,7 @@ export class Market {
 
   async womenProducts() {
     try {
-      const response = await fetch('http://localhost:3000/api/products/women');
+      const response = await fetch('http://192.168.118.213:3000/api/products/women');
       if (!response.ok) {
         throw new Error(response.status.toString());
       }
@@ -56,7 +58,7 @@ export class Market {
   async fashionProducts() {
     try {
       const response = await fetch(
-        'http://localhost:3000/api/products/fashion'
+        'http://192.168.118.213:3000/api/products/fashion'
       );
       if (!response.ok) {
         throw new Error(response.status.toString());
@@ -70,7 +72,7 @@ export class Market {
   async similarProducts(item: any) {
     try {
       const similarProduct = await fetch(
-        `http://localhost:3000/api/products/${item.category}`
+        `http://192.168.118.213:3000/api/products/${item.category}`
       );
 
       if (!similarProduct.ok) {
@@ -79,7 +81,6 @@ export class Market {
 
       const result = await similarProduct.json();
       this.similarP = result;
-
     } catch (error) {
       console.error(
         `Cannot fetch products similar to ${item.name} at the moment`
@@ -90,7 +91,7 @@ export class Market {
   async electronicProducts() {
     try {
       const response = await fetch(
-        'http://localhost:3000/api/products/electronic'
+        'http://192.168.118.213:3000/api/products/electronic'
       );
       if (!response.ok) {
         throw new Error(response.status.toString());
@@ -103,9 +104,7 @@ export class Market {
 
   async edibleProducts() {
     try {
-      const response = await fetch(
-        'http://localhost:3000/api/products/edible'
-      );
+      const response = await fetch('http://192.168.118.213:3000/api/products/edible');
       if (!response.ok) {
         throw new Error(response.status.toString());
       }
@@ -118,7 +117,7 @@ export class Market {
   async schoolMaterials() {
     try {
       const response = await fetch(
-        'http://localhost:3000/api/products/school-material'
+        'http://192.168.118.213:3000/api/products/school-material'
       );
       if (!response.ok) {
         throw new Error(response.status.toString());
@@ -300,7 +299,7 @@ export class Market {
 
       try {
         const submitReview = await fetch(
-          `http://localhost:3000/api/products/${productId}/reviews`,
+          `http://192.168.118.213:3000/api/products/${productId}/reviews`,
           {
             method: 'POST',
             headers: {
@@ -318,6 +317,103 @@ export class Market {
         textArea.value = '';
       } catch (err) {
         console.error('An error occured', err);
+      }
+    }
+  }
+
+  async checkIfUserIsLoggedIn() {
+    try {
+      const isLoggedIn = await fetch('http://192.168.118.213:3000/api/users/me', {
+        credentials: 'include',
+      });
+
+      return isLoggedIn.ok;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async addToCart(item: any) {
+    try {
+      const numOfItem = document.querySelector(
+        '.numOfItem'
+      ) as HTMLButtonElement;
+      const isLoggedIn = await this.checkIfUserIsLoggedIn();
+
+      if (!isLoggedIn) {
+        alert('Please login to add items to cart');
+        this.router.navigate(['/login']);
+        return;
+      }
+      const userName = localStorage.getItem('userName');
+
+      if (!userName) {
+        alert('User name is missing. Please re-login');
+        this.router.navigate(['/login']);
+
+        return;
+      }
+
+      const cartProduct = {
+        productId: item._id,
+        productName: item.name,
+        productPrice: item.price,
+        productImage: item.primaryImage,
+        numOfItem: Number(numOfItem.innerHTML),
+      };
+
+      const sendProductToCart = await fetch(
+        `http://192.168.118.213:3000/api/users/${userName}/cart`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(cartProduct),
+          credentials: 'include',
+        }
+      );
+
+      if (!sendProductToCart.ok) {
+        console.error('Product could not be added to cart');
+
+        return;
+      }
+
+      const message = await sendProductToCart.json();
+      this.cartCount();
+      alert(message.message);
+    } catch (error) {
+      console.error('Something went wrong.', error);
+    }
+  }
+
+  async cartCount() {
+    const cartCount = document.querySelector('.cart-count') as HTMLDivElement;
+
+    if (cartCount) {
+      try {
+        const user = localStorage.getItem('userName');
+
+        if (!user) {
+          return;
+        }
+
+        const thisUser = await fetch(
+          `http://192.168.118.213:3000/api/users/${user}/getCart`,
+          {
+            credentials: 'include',
+          }
+        );
+
+        if (!thisUser) {
+          alert('There is a problem fetching cart information from the server');
+
+          return;
+        }
+
+        const currentUser = await thisUser.json();
+        cartCount.innerHTML = currentUser.length;
+      } catch (error) {
+        console.error('An error occured while trying to fetch the user cart');
       }
     }
   }

@@ -202,7 +202,9 @@
             <button type="button">
               <img src="wishlist.svg" alt="Add to wishlist" />
             </button>
-            <button type="button">Add to cart</button>
+            <button type="button" (click)="addToCartFromDescribe()">
+              Add to cart
+            </button>
             <div class="numbers-btns">
               <button type="button" class="numbers minus">-</button>
               <button type="button" class="numbers numOfItem">1</button>
@@ -234,7 +236,7 @@
                 <button
                   type="button"
                   class="other-button"
-                  (click)="addToCart(item._id)"
+                  (click)="addToCart(item)"
                 >
                   Add to cart
                 </button>

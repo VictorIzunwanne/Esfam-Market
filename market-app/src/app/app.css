@@ -218,13 +218,11 @@ footer span p {
 
 .cart-count {
   position: absolute;
-  top: 0;
+  top: -0.7rem;
   right: -0.5rem;
   color: #fff;
-  background-color: red;
-  inline-size: 1rem;
-  block-size: 1rem;
-  border-radius: 1rem;
+  background-color: #ff000081;
+  padding: 0.2rem;
 }
 
 .wishlist-content,
@@ -243,12 +241,10 @@ footer span p {
 
 .content-product {
   inline-size: 100%;
-  block-size: 5rem;
   display: flex;
   border: 1px solid var(--primary-color);
   border-radius: 0.5rem;
   gap: 0.5rem;
-  overflow: hidden;
 }
 
 .content-product-image {
@@ -258,7 +254,7 @@ footer span p {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  inline-size: 7rem;
+  min-inline-size: 7rem;
 }
 
 .content-product-details {
@@ -281,6 +277,7 @@ footer span p {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .content-product-price-and-stock-container {

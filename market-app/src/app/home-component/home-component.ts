@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -17,21 +17,9 @@ export class HomeComponent {
 
   userName = localStorage.getItem('userName');
 
-  sell: Boolean = false;
-
-  ngOnInit() {
-    const sellerPrevilege = localStorage.getItem('isSeller');
-
-    if (sellerPrevilege === 'true') {
-      this.sell = true;
-    } else {
-      this.sell = false;
-    }
-  }
-
   async checkIfUserIsLoggedIn() {
     try {
-      const isLoggedIn = await fetch('http://localhost:3000/api/users/me', {
+      const isLoggedIn = await fetch('http://192.168.118.213:3000/api/users/me', {
         credentials: 'include',
       });
 
@@ -45,7 +33,7 @@ export class HomeComponent {
 
   async latestProducts() {
     try {
-      const response = await fetch('http://localhost:3000/api/latest-products');
+      const response = await fetch('http://192.168.118.213:3000/api/latest-products');
       if (!response.ok) throw new Error(response.status.toString());
       this.products = await response.json();
     } catch (error) {
@@ -83,7 +71,7 @@ export class HomeComponent {
       };
 
       const sendProductToCart = await fetch(
-        `http://localhost:3000/api/users/${userName}/cart`,
+        `http://192.168.118.213:3000/api/users/${userName}/cart`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -106,6 +94,32 @@ export class HomeComponent {
     }
   }
 
+  async addToCartFromDescribe() {
+    const productId = document.querySelector('.product-id') as HTMLDivElement;
+
+    if (productId) {
+      const product = await fetch(
+        `http://192.168.118.213:3000/api/products/specific/${productId.innerHTML}`,
+        {
+          credentials: 'include',
+        }
+      );
+
+      if (!product) {
+        console.log('Something went wrong while trying to add product to cart');
+        return;
+      }
+
+      const item = await product.json();
+      this.addToCart(item);
+    }
+
+    try {
+    } catch (error) {
+      console.log('Could not add this product to cart');
+    }
+  }
+
   async cartCount() {
     const cartCount = document.querySelector('.cart-count') as HTMLDivElement;
 
@@ -118,7 +132,7 @@ export class HomeComponent {
         }
 
         const thisUser = await fetch(
-          `http://localhost:3000/api/users/${user}/getCart`,
+          `http://192.168.118.213:3000/api/users/${user}/getCart`,
           {
             credentials: 'include',
           }
@@ -143,7 +157,7 @@ export class HomeComponent {
   async similarProducts(item: any) {
     try {
       const similarProduct = await fetch(
-        `http://localhost:3000/api/products/${item.category}`
+        `http://192.168.118.213:3000/api/products/${item.category}`
       );
 
       if (!similarProduct.ok) {
@@ -350,7 +364,7 @@ export class HomeComponent {
 
       try {
         const submitReview = await fetch(
-          `http://localhost:3000/api/products/${productId}/reviews`,
+          `http://192.168.118.213:3000/api/products/${productId}/reviews`,
           {
             method: 'POST',
             headers: {

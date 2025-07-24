@@ -20,7 +20,7 @@ export class Sell {
 
   async findIfUserIsSeller() {
     const isUserSeller = await fetch(
-      `http://localhost:3000/api/users/${this.userName}`
+      `http://192.168.118.213:3000/api/users/${this.userName}`
     );
 
     try {
@@ -472,7 +472,7 @@ export class Sell {
         formData.append('files', file);
       }
       try {
-        const response = await fetch('http://localhost:3000/api/upload', {
+        const response = await fetch('http://192.168.118.213:3000/api/upload', {
           method: 'POST',
           body: formData,
         });

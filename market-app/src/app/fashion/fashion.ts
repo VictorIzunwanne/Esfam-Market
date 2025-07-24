@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-fashion',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './fashion.html',
   styleUrl: './fashion.css',
 })
@@ -11,6 +13,8 @@ export class Fashion {
     this.product();
   }
 
+  constructor(private router: Router) {}
+
   userName = localStorage.getItem('userName');
   products: any[] = [];
   reviews: any[] = [];
@@ -18,9 +22,7 @@ export class Fashion {
 
   async product() {
     try {
-      const results = await fetch(
-        'http://localhost:3000/api/category/fashion'
-      );
+      const results = await fetch('http://192.168.118.213:3000/api/category/fashion');
 
       if (!results.ok) {
         throw new Error(results.status.toString());
@@ -139,7 +141,7 @@ export class Fashion {
   async similarProducts(item: any) {
     try {
       const similarProduct = await fetch(
-        `http://localhost:3000/api/products/${item.category}`
+        `http://192.168.118.213:3000/api/products/${item.category}`
       );
 
       if (!similarProduct.ok) {
@@ -247,7 +249,7 @@ export class Fashion {
 
       try {
         const submitReview = await fetch(
-          `http://localhost:3000/api/products/${productId}/reviews`,
+          `http://192.168.118.213:3000/api/products/${productId}/reviews`,
           {
             method: 'POST',
             headers: {
@@ -265,6 +267,103 @@ export class Fashion {
         textArea.value = '';
       } catch (err) {
         console.error('An error occured', err);
+      }
+    }
+  }
+
+  async checkIfUserIsLoggedIn() {
+    try {
+      const isLoggedIn = await fetch('http://192.168.118.213:3000/api/users/me', {
+        credentials: 'include',
+      });
+
+      return isLoggedIn.ok;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async addToCart(item: any) {
+    try {
+      const numOfItem = document.querySelector(
+        '.numOfItem'
+      ) as HTMLButtonElement;
+      const isLoggedIn = await this.checkIfUserIsLoggedIn();
+
+      if (!isLoggedIn) {
+        alert('Please login to add items to cart');
+        this.router.navigate(['/login']);
+        return;
+      }
+      const userName = localStorage.getItem('userName');
+
+      if (!userName) {
+        alert('User name is missing. Please re-login');
+        this.router.navigate(['/login']);
+
+        return;
+      }
+
+      const cartProduct = {
+        productId: item._id,
+        productName: item.name,
+        productPrice: item.price,
+        productImage: item.primaryImage,
+        numOfItem: Number(numOfItem.innerHTML),
+      };
+
+      const sendProductToCart = await fetch(
+        `http://192.168.118.213:3000/api/users/${userName}/cart`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(cartProduct),
+          credentials: 'include',
+        }
+      );
+
+      if (!sendProductToCart.ok) {
+        console.error('Product could not be added to cart');
+
+        return;
+      }
+
+      const message = await sendProductToCart.json();
+      this.cartCount();
+      alert(message.message);
+    } catch (error) {
+      console.error('Something went wrong.', error);
+    }
+  }
+
+  async cartCount() {
+    const cartCount = document.querySelector('.cart-count') as HTMLDivElement;
+
+    if (cartCount) {
+      try {
+        const user = localStorage.getItem('userName');
+
+        if (!user) {
+          return;
+        }
+
+        const thisUser = await fetch(
+          `http://192.168.118.213:3000/api/users/${user}/getCart`,
+          {
+            credentials: 'include',
+          }
+        );
+
+        if (!thisUser) {
+          alert('There is a problem fetching cart information from the server');
+
+          return;
+        }
+
+        const currentUser = await thisUser.json();
+        cartCount.innerHTML = currentUser.length;
+      } catch (error) {
+        console.error('An error occured while trying to fetch the user cart');
       }
     }
   }
