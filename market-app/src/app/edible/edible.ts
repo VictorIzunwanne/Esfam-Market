@@ -22,7 +22,7 @@ export class Edible {
 
   async product() {
     try {
-      const results = await fetch('http://localhost:3000/api/category/edible');
+      const results = await fetch('https://esfam-market.onrender.com/api/category/edible');
 
       if (!results.ok) {
         throw new Error(results.status.toString());
@@ -141,7 +141,7 @@ export class Edible {
   async similarProducts(item: any) {
     try {
       const similarProduct = await fetch(
-        `http://localhost:3000/api/products/${item.category}`
+        `https://esfam-market.onrender.com/api/products/${item.category}`
       );
 
       if (!similarProduct.ok) {
@@ -249,7 +249,7 @@ export class Edible {
 
       try {
         const submitReview = await fetch(
-          `http://localhost:3000/api/products/${productId}/reviews`,
+          `https://esfam-market.onrender.com/api/products/${productId}/reviews`,
           {
             method: 'POST',
             headers: {
@@ -273,7 +273,7 @@ export class Edible {
 
   async checkIfUserIsLoggedIn() {
     try {
-      const isLoggedIn = await fetch('http://localhost:3000/api/users/me', {
+      const isLoggedIn = await fetch('https://esfam-market.onrender.com/api/users/me', {
         credentials: 'include',
       });
 
@@ -313,7 +313,7 @@ export class Edible {
       };
 
       const sendProductToCart = await fetch(
-        `http://localhost:3000/api/users/${userName}/cart`,
+        `https://esfam-market.onrender.com/api/users/${userName}/cart`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -348,7 +348,7 @@ export class Edible {
         }
 
         const thisUser = await fetch(
-          `http://localhost:3000/api/users/${user}/getCart`,
+          `https://esfam-market.onrender.com/api/users/${user}/getCart`,
           {
             credentials: 'include',
           }

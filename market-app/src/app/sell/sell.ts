@@ -20,7 +20,7 @@ export class Sell {
 
   async findIfUserIsSeller() {
     const isUserSeller = await fetch(
-      `http://localhost:3000/api/users/${this.userName}`
+      `https://esfam-market.onrender.com/api/users/${this.userName}`
     );
 
     try {
@@ -472,7 +472,7 @@ export class Sell {
         formData.append('files', file);
       }
       try {
-        const response = await fetch('http://localhost:3000/api/upload', {
+        const response = await fetch('https://esfam-market.onrender.com/api/upload', {
           method: 'POST',
           body: formData,
         });

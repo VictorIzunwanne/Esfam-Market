@@ -19,7 +19,7 @@ export class SchoolAccessory {
   async product() {
     try {
       const results = await fetch(
-        'http://localhost:3000/api/category/school-material'
+        'https://esfam-market.onrender.com/api/category/school-material'
       );
 
       if (!results.ok) {
@@ -139,7 +139,7 @@ export class SchoolAccessory {
   async similarProducts(item: any) {
     try {
       const similarProduct = await fetch(
-        `http://localhost:3000/api/products/${item.category}`
+        `https://esfam-market.onrender.com/api/products/${item.category}`
       );
 
       if (!similarProduct.ok) {
@@ -247,7 +247,7 @@ export class SchoolAccessory {
 
       try {
         const submitReview = await fetch(
-          `http://localhost:3000/api/products/${productId}/reviews`,
+          `https://esfam-market.onrender.com/api/products/${productId}/reviews`,
           {
             method: 'POST',
             headers: {
