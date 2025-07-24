@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "https://esfam-market.netlify.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    metods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
