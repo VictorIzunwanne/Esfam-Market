@@ -23,7 +23,7 @@ export class Electronic {
   async product() {
     try {
       const results = await fetch(
-        'http://192.168.118.213:3000/api/category/electronic'
+        'http://localhost:3000/api/category/electronic'
       );
 
       if (!results.ok) {
@@ -143,7 +143,7 @@ export class Electronic {
   async similarProducts(item: any) {
     try {
       const similarProduct = await fetch(
-        `http://192.168.118.213:3000/api/products/${item.category}`
+        `http://localhost:3000/api/products/${item.category}`
       );
 
       if (!similarProduct.ok) {
@@ -251,7 +251,7 @@ export class Electronic {
 
       try {
         const submitReview = await fetch(
-          `http://192.168.118.213:3000/api/products/${productId}/reviews`,
+          `http://localhost:3000/api/products/${productId}/reviews`,
           {
             method: 'POST',
             headers: {
@@ -275,7 +275,7 @@ export class Electronic {
 
   async checkIfUserIsLoggedIn() {
     try {
-      const isLoggedIn = await fetch('http://192.168.118.213:3000/api/users/me', {
+      const isLoggedIn = await fetch('http://localhost:3000/api/users/me', {
         credentials: 'include',
       });
 
@@ -315,7 +315,7 @@ export class Electronic {
       };
 
       const sendProductToCart = await fetch(
-        `http://192.168.118.213:3000/api/users/${userName}/cart`,
+        `http://localhost:3000/api/users/${userName}/cart`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -350,7 +350,7 @@ export class Electronic {
         }
 
         const thisUser = await fetch(
-          `http://192.168.118.213:3000/api/users/${user}/getCart`,
+          `http://localhost:3000/api/users/${user}/getCart`,
           {
             credentials: 'include',
           }

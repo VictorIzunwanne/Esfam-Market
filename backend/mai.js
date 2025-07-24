@@ -47,7 +47,7 @@
 
 // app.listen(process.env.port, () => {
 //   console.log(
-//     `Server is started at http://192.168.118.213:${process.env.port}/products`
+//     `Server is started at http://localhost:${process.env.port}/products`
 //   );
 // });
 

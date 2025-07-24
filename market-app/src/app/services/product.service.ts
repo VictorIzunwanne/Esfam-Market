@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
-  private apiUrl = 'http://192.168.118.213:3000/api/products';
+  private apiUrl = 'http://localhost:3000/api/products';
 
   constructor(private http: HttpClient) {}
 

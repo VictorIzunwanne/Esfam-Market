@@ -11,7 +11,7 @@ dotenv.config();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://192.168.118.213:4200",
+    origin: "https://esfam-market.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -52,5 +52,5 @@ app.use("/api/users", userLogin);
 app.use("/api/users/signup", userSignUp);
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server is started at http://192.168.118.213:${process.env.port}/api/`);
+  console.log(`Server is started at http://localhost:${process.env.port}/api/`);
 });

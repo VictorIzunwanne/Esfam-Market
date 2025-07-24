@@ -329,7 +329,7 @@ export class App {
         }
 
         const thisUser = await fetch(
-          `http://192.168.118.213:3000/api/users/${user}/getCart`,
+          `http://localhost:3000/api/users/${user}/getCart`,
           {
             credentials: 'include',
           }
@@ -358,7 +358,7 @@ export class App {
       }
 
       const thisUser = await fetch(
-        `http://192.168.118.213:3000/api/users/${user}/getCart`,
+        `http://localhost:3000/api/users/${user}/getCart`,
         {
           credentials: 'include',
         }
@@ -394,7 +394,7 @@ export class App {
       }
 
       const deleted = await fetch(
-        `http://192.168.118.213:3000/api/users/${userName}/cart`,
+        `http://localhost:3000/api/users/${userName}/cart`,
         {
           method: 'DELETE',
           headers: {
