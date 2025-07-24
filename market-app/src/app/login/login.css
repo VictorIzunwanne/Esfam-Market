@@ -20,6 +20,10 @@ section {
   gap: 0.5rem;
 }
 
+.content > p {
+  text-align: center;
+}
+
 @media screen and (max-width: 1000px) {
   .content {
     inline-size: 100vw;

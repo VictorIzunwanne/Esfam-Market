@@ -22,8 +22,9 @@ export class Login {
     const backendMessage = document.querySelector(
       '.message'
     ) as HTMLParagraphElement;
+    const loginOut = document.querySelector('.determine') as HTMLDivElement;
 
-    if (userName && userEmail && userPassword) {
+    if (userName && userEmail && userPassword && loginOut) {
       const userDetails = {
         name: userName.value,
         email: userEmail.value,
@@ -31,12 +32,13 @@ export class Login {
       };
 
       try {
-        const userExist = await fetch('http://192.168.15.213:3000/api/users/login', {
+        const userExist = await fetch('http://localhost:3000/api/users/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(userDetails),
+          credentials: 'include',
         });
 
         if (!userExist.ok) {
@@ -53,14 +55,26 @@ export class Login {
         ) {
           backendMessage.style.color = 'red';
         } else if (message.message.includes('Welcome')) {
-          console.log(message.isSeller);
           backendMessage.style.color = 'green';
 
-          setTimeout(() => {
-            this.router.navigate(['/']);
-          }, 1000);
+          const userDataRes = await fetch(
+            'http://localhost:3000/api/users/me',
+            {
+              credentials: 'include',
+            }
+          );
 
-          localStorage.setItem('userName', userDetails.name);
+          const userData = await userDataRes.json();
+
+          localStorage.setItem('userName', userData.userName);
+
+          loginOut.innerHTML = `Welcome, ${localStorage
+            .getItem('userName')
+            ?.toUpperCase()}`;
+
+          setTimeout(() => {
+            this.router.navigate(['']);
+          }, 1000);
         } else {
           backendMessage.style.color = 'var(--primary-text-color)';
         }

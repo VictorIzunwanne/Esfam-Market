@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouterLink, Router } from '@angular/router';
 
@@ -21,52 +21,28 @@ export class App {
 
   constructor(private router: Router) {}
 
-  closeDropDowns() {
-    const dropMenu = document.querySelector('.dropdown-content');
-    const themeMenu = document.querySelector('.theme-container');
-    const accountMenu = document.querySelector('.account-container');
-
-    if (dropMenu && themeMenu && accountMenu) {
-      if (
-        dropMenu.classList.contains('display') ||
-        themeMenu.classList.contains('display') ||
-        accountMenu.classList.contains('display')
-      ) {
-        setTimeout(() => {
-          accountMenu.classList.remove('display');
-          themeMenu.classList.remove('display');
-          dropMenu.classList.remove('display');
-        }, 5000);
-      }
-    }
-  }
-
   openDropDown() {
     const dropMenu = document.querySelector('.dropdown-content');
 
     if (dropMenu) {
       dropMenu.classList.toggle('display');
+
+      setTimeout(() => {
+        dropMenu.classList.remove('display');
+      }, 5000);
     }
   }
 
   userName = localStorage.getItem('userName');
   sell: Boolean = false;
 
-  loggedIn() {
-    const manageAcc = document.querySelector('.determine') as HTMLDivElement;
-    const userName = localStorage.getItem('userName');
+  logInOut() {
+    const logOut = document.querySelector('.determine') as HTMLDivElement;
 
-    if (manageAcc) {
-      const user = userName;
-
-      if (user) {
-        console.log(`You are logged in as ${userName}`);
-
-        manageAcc.innerText = 'Profile';
-        this.userName = userName;
-      } else {
-        manageAcc.innerText = 'Join Esfam Market';
-        this.userName = '';
+    if (logOut) {
+      if (logOut.innerHTML === 'Login') {
+        this.router.navigate(['/login']);
+        return;
       }
     }
   }
@@ -78,6 +54,10 @@ export class App {
     if (themeMenu && accountMenu) {
       themeMenu.classList.toggle('display');
       accountMenu.classList.remove('display');
+
+      setTimeout(() => {
+        themeMenu.classList.remove('display');
+      }, 5000);
     }
   }
 
@@ -88,6 +68,10 @@ export class App {
     if (accountMenu && themeMenu) {
       accountMenu.classList.toggle('display');
       themeMenu.classList.remove('display');
+
+      setTimeout(() => {
+        accountMenu.classList.remove('display');
+      }, 5000);
     }
   }
 
@@ -213,7 +197,6 @@ export class App {
     lightTheme?.classList.remove('active');
     darkTheme?.classList.remove('active');
   }
-  // THEME FUNCTION END
 
   openWishlist() {
     const wishlist = document.querySelector('.wishlist');
@@ -254,6 +237,8 @@ export class App {
       cart.classList.add('opened');
       modalBackground.style.display = 'flex';
       body.classList.add('no-scroll');
+
+      this.getUserCart();
     }
   }
 
@@ -326,13 +311,123 @@ export class App {
 
   ngAfterViewInit() {
     this.storedThemeF();
+    this.getUserCart();
+    this.cartCount();
 
-    const sellerPrevilege = localStorage.getItem('isSeller');
+    const loginOut = document.querySelector('.determine');
 
-    if (sellerPrevilege === 'true') {
-      this.sell = true;
-    } else {
-      this.sell = false;
+    if (loginOut) {
+      if (localStorage.getItem('userName')) {
+        loginOut.innerHTML = `Welcome, ${localStorage
+          .getItem('userName')
+          ?.toUpperCase()}`;
+
+        return;
+      }
+    }
+  }
+
+  cart: any[] = [];
+
+  async cartCount() {
+    const cartCount = document.querySelector('.cart-count') as HTMLDivElement;
+
+    if (cartCount) {
+      try {
+        const user = localStorage.getItem('userName');
+
+        if (!user) {
+          return;
+        }
+
+        const thisUser = await fetch(
+          `http://localhost:3000/api/users/${user}/getCart`,
+          {
+            credentials: 'include',
+          }
+        );
+
+        if (!thisUser) {
+          alert('There is a problem fetching cart information from the server');
+
+          return;
+        }
+
+        const currentUser = await thisUser.json();
+        cartCount.innerHTML = currentUser.length;
+      } catch (error) {
+        console.error('An error occured while trying to fetch the user cart');
+      }
+    }
+  }
+
+  async getUserCart() {
+    try {
+      const user = localStorage.getItem('userName');
+
+      if (!user) {
+        return;
+      }
+
+      const thisUser = await fetch(
+        `http://localhost:3000/api/users/${user}/getCart`,
+        {
+          credentials: 'include',
+        }
+      );
+
+      if (!thisUser) {
+        alert('There is a problem fetching cart information from the server');
+
+        return;
+      }
+
+      const currentUser = await thisUser.json();
+      this.cartCount();
+      this.cart = currentUser;
+    } catch (error) {
+      console.error('An error occured while trying to fetch the user cart');
+    }
+  }
+
+  async deleteProductFromCart(item: any) {
+    try {
+      const userName = localStorage.getItem('userName');
+      const deleteItem = {
+        itemId: item._id,
+        itemName: item.name,
+      };
+
+      if (!userName) {
+        alert('User name is missing. Please re-login');
+
+        this.router.navigate(['/login']);
+        return;
+      }
+
+      const deleted = await fetch(
+        `http://localhost:3000/api/${userName}/cart`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(deleteItem),
+          credentials: 'include',
+        }
+      );
+
+      if (!deleted.ok) {
+        console.log(
+          'An error occured while trying to delete product from cart'
+        );
+        return;
+      }
+
+      const done = await deleted.json();
+      alert('product deleted from cart');
+    } catch (error) {
+      console.error('Could not delete product from cart', error);
     }
   }
 }

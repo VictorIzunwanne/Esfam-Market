@@ -46,7 +46,7 @@ export class Signup {
       const userInfo = {
         firstName: firstName.value,
         lastName: lastName.value,
-        userName: userName.value,
+        userName: userName.value.toLowerCase(),
         email: email.value,
         gender: gender.value,
         password: password.value,
@@ -55,7 +55,7 @@ export class Signup {
 
       try {
         const signupResult = await fetch(
-          'http://192.168.15.213:3000/api/users/signup',
+          'http://localhost:3000/api/users/signup',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

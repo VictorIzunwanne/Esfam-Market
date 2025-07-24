@@ -1,14 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
+
 const app = express();
 
 dotenv.config();
+
+app.use(cookieParser());
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:4200",
     methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
 app.use(express.json());
@@ -43,9 +48,9 @@ app.use("/api/latest-products", getLatestProducts);
 app.use("/api", getCategories);
 app.use("/api/admins", logAdmin);
 app.use("/api/admin-data", AdminSchema);
-app.use("/api/users/login", userLogin);
+app.use("/api/users", userLogin);
 app.use("/api/users/signup", userSignUp);
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server is started at http://192.168.15.213:${process.env.port}/api/`);
+  console.log(`Server is started at http://localhost:${process.env.port}/api/`);
 });

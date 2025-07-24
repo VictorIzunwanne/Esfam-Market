@@ -11,6 +11,26 @@ exports.getAllProducts = async (req, res) => {
   }
 };
 
+exports.getParticularProduct = async (req, res) => {
+  try {
+    const productId = req.params.itemId;
+
+    const productExist = await Product.findById(productId);
+
+    if (!productExist) {
+      res
+        .status(404)
+        .json({ message: "Product does not exist in the database" });
+
+      return;
+    }
+
+    res.status(200).json(productExist);
+  } catch (error) {
+    res.status(500).json({ message: "An error occured in the server" });
+  }
+};
+
 exports.createProduct = async (req, res) => {
   try {
     if (!req.body) {

@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,9 +11,9 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent {
   ngAfterViewInit() {
     this.latestProducts();
-
-    this.outOfStock();
   }
+
+  constructor(private router: Router) {}
 
   userName = localStorage.getItem('userName');
 
@@ -29,17 +29,112 @@ export class HomeComponent {
     }
   }
 
+  async checkIfUserIsLoggedIn() {
+    try {
+      const isLoggedIn = await fetch('http://localhost:3000/api/users/me', {
+        credentials: 'include',
+      });
+
+      return isLoggedIn.ok;
+    } catch (error) {
+      return false;
+    }
+  }
+
   products: any[] = [];
 
   async latestProducts() {
     try {
-      const response = await fetch(
-        'http://192.168.15.213:3000/api/latest-products'
-      );
+      const response = await fetch('http://localhost:3000/api/latest-products');
       if (!response.ok) throw new Error(response.status.toString());
       this.products = await response.json();
     } catch (error) {
       console.error('Cannot fetch most purchased products', error);
+    }
+  }
+
+  async addToCart(item: any) {
+    try {
+      const numOfItem = document.querySelector(
+        '.numOfItem'
+      ) as HTMLButtonElement;
+      const isLoggedIn = await this.checkIfUserIsLoggedIn();
+
+      if (!isLoggedIn) {
+        alert('Please login to add items to cart');
+        this.router.navigate(['/login']);
+        return;
+      }
+      const userName = localStorage.getItem('userName');
+
+      if (!userName) {
+        alert('User name is missing. Please re-login');
+        this.router.navigate(['/login']);
+
+        return;
+      }
+
+      const cartProduct = {
+        productId: item._id,
+        productName: item.name,
+        productPrice: item.price,
+        productImage: item.primaryImage,
+        numOfItem: Number(numOfItem.innerHTML),
+      };
+
+      const sendProductToCart = await fetch(
+        `http://localhost:3000/api/users/${userName}/cart`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(cartProduct),
+          credentials: 'include',
+        }
+      );
+
+      if (!sendProductToCart.ok) {
+        console.error('Product could not be added to cart');
+
+        return;
+      }
+
+      const message = await sendProductToCart.json();
+      this.cartCount();
+      alert(message.message);
+    } catch (error) {
+      console.error('Something went wrong.', error);
+    }
+  }
+
+  async cartCount() {
+    const cartCount = document.querySelector('.cart-count') as HTMLDivElement;
+
+    if (cartCount) {
+      try {
+        const user = localStorage.getItem('userName');
+
+        if (!user) {
+          return;
+        }
+
+        const thisUser = await fetch(
+          `http://localhost:3000/api/users/${user}/getCart`,
+          {
+            credentials: 'include',
+          }
+        );
+
+        if (!thisUser) {
+          alert('There is a problem fetching cart information from the server');
+
+          return;
+        }
+
+        const currentUser = await thisUser.json();
+        cartCount.innerHTML = currentUser.length;
+      } catch (error) {
+        console.error('An error occured while trying to fetch the user cart');
+      }
     }
   }
 
@@ -48,7 +143,7 @@ export class HomeComponent {
   async similarProducts(item: any) {
     try {
       const similarProduct = await fetch(
-        `http://192.168.15.213:3000/api/products/${item.category}`
+        `http://localhost:3000/api/products/${item.category}`
       );
 
       if (!similarProduct.ok) {
@@ -65,15 +160,6 @@ export class HomeComponent {
   }
 
   reviews: any[] = [];
-
-  outOfStock() {
-    const productStock = document.querySelector('.stock-status');
-    const product = document.querySelector('.product');
-
-    if (product && productStock) {
-      console.log(product, productStock);
-    }
-  }
 
   displayDetails(item: any, e: Event) {
     const modalBackground = document.querySelector(
@@ -219,7 +305,25 @@ export class HomeComponent {
   async submitReview(e: Event) {
     e.preventDefault();
 
-    const name = this.userName;
+    const loggedIn = await this.checkIfUserIsLoggedIn();
+
+    if (!loggedIn) {
+      alert('You need to login before you can leave a review');
+
+      this.router.navigate(['/login']);
+    }
+
+    const name = localStorage.getItem('userName');
+
+    if (!name) {
+      alert('Your user is missing. please re-login');
+
+      this.router.navigate(['/login']);
+      this.removeDetails();
+
+      return;
+    }
+
     const textArea = document.querySelector(
       '#write-review'
     ) as HTMLTextAreaElement;
@@ -246,13 +350,14 @@ export class HomeComponent {
 
       try {
         const submitReview = await fetch(
-          `http://192.168.15.213:3000/api/products/${productId}/reviews`,
+          `http://localhost:3000/api/products/${productId}/reviews`,
           {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(review),
+            credentials: 'include',
           }
         );
 
@@ -265,6 +370,36 @@ export class HomeComponent {
       } catch (err) {
         console.error('An error occured', err);
       }
+    }
+  }
+
+  async uploadProductsButton() {
+    try {
+      const isLoggedIn = await this.checkIfUserIsLoggedIn();
+
+      if (!isLoggedIn) {
+        alert(
+          'You have to be logged in and registered as a seller to upload products'
+        );
+
+        this.router.navigate(['/login']);
+
+        return;
+      }
+
+      const userName = localStorage.getItem('userName');
+
+      if (!userName) {
+        alert('User name is missing. Please re-login.');
+
+        this.router.navigate(['/login']);
+
+        return;
+      }
+
+      this.router.navigate(['/sell']);
+    } catch (error) {
+      console.error('Something went wrong', error);
     }
   }
 }

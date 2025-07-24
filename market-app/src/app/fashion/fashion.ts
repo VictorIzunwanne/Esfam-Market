@@ -19,7 +19,7 @@ export class Fashion {
   async product() {
     try {
       const results = await fetch(
-        'http://192.168.15.213:3000/api/category/fashion'
+        'http://localhost:3000/api/category/fashion'
       );
 
       if (!results.ok) {
@@ -139,7 +139,7 @@ export class Fashion {
   async similarProducts(item: any) {
     try {
       const similarProduct = await fetch(
-        `http://192.168.15.213:3000/api/products/${item.category}`
+        `http://localhost:3000/api/products/${item.category}`
       );
 
       if (!similarProduct.ok) {
@@ -247,7 +247,7 @@ export class Fashion {
 
       try {
         const submitReview = await fetch(
-          `http://192.168.15.213:3000/api/products/${productId}/reviews`,
+          `http://localhost:3000/api/products/${productId}/reviews`,
           {
             method: 'POST',
             headers: {

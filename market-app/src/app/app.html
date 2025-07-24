@@ -8,7 +8,30 @@
         <img src="close.svg" alt="close button" />
       </button>
     </div>
-    <div class="wishlist-content"></div>
+    <div class="wishlist-content">
+      <div class="content-product">
+        <div class="content-product-image"></div>
+        <div class="content-product-details">
+          <div class="content-product-name">Expensive Body Cream</div>
+          <div class="content-product-price-and-button">
+            <div class="content-product-price-and-stock-container">
+              <div class="content-product-price">
+                ₦ <span class="content-product-actual-price">5,000</span>
+              </div>
+              <div class="content-product-stock-value">In stock</div>
+            </div>
+            <div class="content-delete-product-button-container">
+              <button type="button" class="reduce-number-of-item">-</button>
+              <button type="button" class="number-of-item" disabled>1</button>
+              <button type="button" class="increase-number-of-item">+</button>
+              <button type="button" class="delete-product-button">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="cart">
@@ -18,7 +41,45 @@
         <img src="close.svg" alt="close button" />
       </button>
     </div>
-    <div class="cart-content"></div>
+
+    <div class="cart-content">
+      @for (item of cart; track item._id) {
+      <div class="content-product">
+        <div
+          class="content-product-image"
+          style="background-image: url('{{ item.productImage }}')"
+        ></div>
+        <div class="content-product-details">
+          <div class="content-product-name">{{ item.productName }}</div>
+          <div class="content-product-price-and-button">
+            <div class="content-product-price-and-stock-container">
+              <div class="content-product-price">
+                ₦
+                <span class="content-product-actual-price"
+                  >{{ item.productPrice }}</span
+                >
+              </div>
+              <div class="content-product-stock-value">In stock</div>
+            </div>
+            <div class="content-delete-product-button-container">
+              <button type="button" class="reduce-number-of-item">-</button>
+              <button type="button" class="number-of-item" disabled>
+                {{ item.numOfItem }}
+              </button>
+              <button type="button" class="increase-number-of-item">+</button>
+              <button
+                type="button"
+                class="delete-product-button"
+                (click)="deleteProductFromCart(item)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
   </div>
 
   <div class="menu">
@@ -163,20 +224,21 @@
         <img src="wishlist.svg" alt="theme icon" width="20px" />
       </button>
 
-      <button type="button" (click)="openCart()">
+      <button type="button" class="cart-button" (click)="openCart()">
         <img src="cart.svg" alt="theme icon" width="20px" />
+        <div class="cart-count">0</div>
       </button>
 
-      <button type="button" (click)="openAccountMenu()" (click)="loggedIn()">
+      <button type="button" (click)="openAccountMenu()">
         <img src="account.svg" alt="theme icon" width="20px" />
 
         <div class="account-container">
           <ul>
-            <li [routerLink]="userName ? '/profile' : '/login'">
+            <li>
               <div class="account-icon">
                 <img src="create-account.svg" alt="account icon" width="20px" />
               </div>
-              <div class="determine">Join Esfam Market</div>
+              <div class="determine">Login</div>
             </li>
 
             <li [routerLink]="sell ? 'sell' : 'seller-register'">
@@ -205,5 +267,9 @@
   <footer>
     <p>&copy;All rights reserved. | Esfam Market 2025</p>
     <span><p (click)="isAdmin()">Admin Panel</p></span>
+    <p>
+      This site uses cookies to store essential user session data. We do not use
+      tracking or third-party cookies.
+    </p>
   </footer>
 </div>

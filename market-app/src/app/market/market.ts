@@ -31,7 +31,7 @@ export class Market {
 
   async menProducts() {
     try {
-      const response = await fetch('http://192.168.15.213:3000/api/products/men');
+      const response = await fetch('http://localhost:3000/api/products/men');
       if (!response.ok) {
         throw new Error(response.status.toString());
       }
@@ -43,7 +43,7 @@ export class Market {
 
   async womenProducts() {
     try {
-      const response = await fetch('http://192.168.15.213:3000/api/products/women');
+      const response = await fetch('http://localhost:3000/api/products/women');
       if (!response.ok) {
         throw new Error(response.status.toString());
       }
@@ -56,7 +56,7 @@ export class Market {
   async fashionProducts() {
     try {
       const response = await fetch(
-        'http://192.168.15.213:3000/api/similar-products/fashion'
+        'http://localhost:3000/api/products/fashion'
       );
       if (!response.ok) {
         throw new Error(response.status.toString());
@@ -70,7 +70,7 @@ export class Market {
   async similarProducts(item: any) {
     try {
       const similarProduct = await fetch(
-        `http://192.168.15.213:3000/api/similar-products/${item.category}`
+        `http://localhost:3000/api/products/${item.category}`
       );
 
       if (!similarProduct.ok) {
@@ -90,7 +90,7 @@ export class Market {
   async electronicProducts() {
     try {
       const response = await fetch(
-        'http://192.168.15.213:3000/api/similar-products/electronic'
+        'http://localhost:3000/api/products/electronic'
       );
       if (!response.ok) {
         throw new Error(response.status.toString());
@@ -104,7 +104,7 @@ export class Market {
   async edibleProducts() {
     try {
       const response = await fetch(
-        'http://192.168.15.213:3000/api/similar-products/edible'
+        'http://localhost:3000/api/products/edible'
       );
       if (!response.ok) {
         throw new Error(response.status.toString());
@@ -118,7 +118,7 @@ export class Market {
   async schoolMaterials() {
     try {
       const response = await fetch(
-        'http://192.168.15.213:3000/api/similar-products/school-material'
+        'http://localhost:3000/api/products/school-material'
       );
       if (!response.ok) {
         throw new Error(response.status.toString());
@@ -300,7 +300,7 @@ export class Market {
 
       try {
         const submitReview = await fetch(
-          `http://192.168.15.213:3000/api/products/${productId}/reviews`,
+          `http://localhost:3000/api/products/${productId}/reviews`,
           {
             method: 'POST',
             headers: {
