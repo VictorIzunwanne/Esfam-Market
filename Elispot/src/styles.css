@@ -139,6 +139,10 @@ footer {
   margin: 0.5rem 0;
 }
 
+.socials div:hover {
+  cursor: pointer;
+}
+
 .column ul {
   list-style-type: none;
   display: flex;
