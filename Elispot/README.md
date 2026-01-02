@@ -1,5 +1,7 @@
 # Elispot
 
+This project was built by Izunwanne Victor A.E. You may NOT copy my code!
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0.
 
 ## Development server

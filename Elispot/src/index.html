@@ -1,13 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Elispot</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Elispot</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo"><h1>Elispot</h1></div>
+
+      <div class="nav-links">
+        <ul>
+          <li class="hover">Home</li>
+          <li class="hover">Shop</li>
+          <li class="hover">Blog</li>
+          <li class="hover">About</li>
+          <li class="hover">Contact</li>
+        </ul>
+      </div>
+
+      <div class="cart-and-wishlist">
+        <div class="theme hover">
+          <img
+            src="routine_24dp_1F1F1F_FILL1_wght400_GRAD0_opsz24.svg"
+            alt=""
+          />
+        </div>
+
+        <div class="wishlist hover">
+          <img
+            src="favorite_24dp_1F1F1F_FILL1_wght400_GRAD0_opsz24.svg"
+            alt="wishlist icon"
+          />
+        </div>
+
+        <div class="cart hover">
+          <img
+            src="shopping_cart_24dp_1F1F1F_FILL1_wght400_GRAD0_opsz24.svg"
+            alt="cart icon"
+          />
+        </div>
+      </div>
+    </header>
+
+    <main><app-root></app-root></main>
+
+    <footer>
+      <div class="section">
+        <div class="column details">
+          <h2>Elispot</h2>
+
+          <p>Confidence starts here.</p>
+
+          <div class="socials">
+            <div class="facebook">
+              <img
+                src="facebook-brands-solid-full.svg"
+                alt="facebook logo"
+                height="36px"
+              />
+            </div>
+
+            <div class="whatsapp">
+              <img
+                src="square-whatsapp-brands-solid-full.svg"
+                alt="whatsapp logo"
+                height="36px"
+              />
+            </div>
+
+            <div class="x-twitter">
+              <img
+                src="square-x-twitter-brands-solid-full.svg"
+                alt="X-twitter logo"
+                height="36px"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <ul>
+            <li>Home</li>
+            <li>Shop</li>
+            <li>Blog</li>
+            <li>About</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <ul>
+            <li>FAQ</li>
+            <li>Shipping and Delivery</li>
+            <li>Return and Refunds</li>
+            <li>Order Tracking</li>
+            <li>Contact Support</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <ul>
+            <li>Privacy Policy</li>
+            <li>Terms and Conditions</li>
+            <li>Cookie Policy</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <p>&copy; 2026 Elispot. All rights reserved</p>
+      </div>
+    </footer>
+  </body>
 </html>
