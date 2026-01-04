@@ -16,11 +16,34 @@ html {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  border-radius: 10px;
 }
 
 .hover:hover {
   cursor: pointer;
   background-color: var(--accent);
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.25s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover {
+  scale: 1.05;
+}
+
+/* ::selection {
+  background-color: var(--accent);
+  color: var(--primary);
+} */
+
+h3 {
+  padding: 0 0 1rem 0;
 }
 
 body {
@@ -153,4 +176,10 @@ footer {
 .column li:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+@media screen and (max-width: 780px) {
+	body {
+    background-color: lightblue;
+  }
 }

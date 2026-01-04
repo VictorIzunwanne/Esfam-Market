@@ -1,0 +1,69 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+section.a {
+  background-color: var(--primary);
+  color: var(--background);
+  min-block-size: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  padding: 0 2rem;
+}
+
+section h2 {
+  font-size: 46px;
+}
+
+section.a p {
+  padding: 0 0 2rem 0;
+}
+
+section button {
+  background-color: var(--background);
+  color: var(--primary);
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--primary);
+}
+
+.featured-categories ul {
+  list-style-type: none;
+  display: flex;
+	flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.featured-categories li {
+  background-color: #f5f5f5;
+	color: #111;
+	flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: 10rem;
+	inline-size: 140px;
+  cursor: pointer;
+  transition: all 0.25s;
+  user-select: none;
+}
+
+.featured-categories li:hover {
+  font-weight: bold;
+}
+
+.face-caps,
+.tops,
+.trousers,
+.shoes {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
