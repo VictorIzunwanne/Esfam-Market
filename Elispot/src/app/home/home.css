@@ -67,3 +67,35 @@ section button {
 	justify-content: space-between;
 	gap: 1rem;
 }
+
+.featured-product ul {
+	list-style-type: none;
+	display: flex;
+	gap: 1rem;
+
+	flex-wrap: wrap;
+}
+
+.featured-product li {
+	display: flex;
+	flex-direction: column;
+
+	min-inline-size: 300px;
+}
+
+.product-image {
+	background-color: var(--primary);
+	block-size: 150px;
+	border-radius: 0;
+}
+
+.product-details {
+	display: flex;
+	flex-direction: column;
+}
+
+.product-details button {
+	inline-size: 100%;
+	border-radius: 0;
+	block-size: 40px;
+}

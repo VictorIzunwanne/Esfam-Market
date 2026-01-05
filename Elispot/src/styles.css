@@ -31,16 +31,18 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  user-select: none;
 }
 
 button:hover {
   scale: 1.05;
 }
 
-/* ::selection {
+::selection {
   background-color: var(--accent);
   color: var(--primary);
-} */
+}
 
 h3 {
   padding: 0 0 1rem 0;
@@ -144,16 +146,28 @@ footer {
 
 .section {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-grow: 1;
 
   padding: 1rem 0;
   gap: 1rem;
 }
 
-.column {
+.links {
+  flex-grow: 1;
   display: flex;
-  flex-direction: column;
-  flex: 1;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.links > .column {
+  gap: 2rem;
+  min-inline-size: 100px;
+}
+
+.column {
+  flex-grow: 1;
+  min-inline-size: 170px;
 }
 
 .details div {
@@ -173,6 +187,10 @@ footer {
   gap: 2rem;
 }
 
+.column li {
+  inline-size: 150px;
+}
+
 .column li:hover {
   cursor: pointer;
   text-decoration: underline;
@@ -180,6 +198,7 @@ footer {
 
 @media screen and (max-width: 780px) {
 	body {
+    /* REMOVE THE BACKGROUND COLOR LATER */
     background-color: lightblue;
   }
 }
