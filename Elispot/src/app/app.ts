@@ -9,4 +9,14 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected title = 'Elispot';
+
+  openMenu() {
+    const menu = document.querySelector('.menu');
+
+    if (menu) {
+      menu.classList.toggle('open');
+    }
+  }
+
+  ngAfterViewInit() {}
 }

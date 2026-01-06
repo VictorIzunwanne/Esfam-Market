@@ -1,0 +1,44 @@
+:root {
+  --primary: #111;
+  --background: #fff;
+  --accent: #f1f1f1;
+  --other: #c9a14a;
+}
+
+html {
+  font-family: "roboto", san-serif;
+  font-size: 14px;
+  letter-spacing: 0.7px;
+}
+
+@media screen and (min-width: 700px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: all 0.25s;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "poppins", sans-serif;
+  font-weight: 500;
+}
+
+body {
+  min-block-size: 100vh;
+  background-color: var(--background);
+  color: var(--primary);
+}

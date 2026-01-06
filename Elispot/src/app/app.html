@@ -1,1 +1,123 @@
-<router-outlet></router-outlet>
+<header>
+  <menu>
+    <div class="menu-btn" (click)="openMenu()">
+      <img
+        src="menu_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
+        alt="menu button"
+      />
+    </div>
+  </menu>
+
+  <div class="logo">
+    <h1>Elispot</h1>
+  </div>
+
+  <div class="nav-links">
+    <ul>
+      <li>Home</li>
+      <li>Shop</li>
+      <li>Blog</li>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+
+  <div class="functionalities">
+    <div class="search">
+      <img
+        src="search_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
+        alt="search button"
+      />
+    </div>
+
+    <div class="cart">
+      <img
+        src="shopping_cart_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
+        alt="cart button"
+      />
+    </div>
+  </div>
+</header>
+
+<main><router-outlet></router-outlet></main>
+
+<footer>
+  <section>
+    <div class="details">
+      <h2>Elispot</h2>
+
+      <p>Confidence starts here.</p>
+
+      <div class="socials">
+        <div>
+          <img
+            src="facebook-brands-solid-full.svg"
+            alt="facebook logo"
+            height="36px"
+          />
+        </div>
+
+        <div>
+          <img
+            src="square-whatsapp-brands-solid-full.svg"
+            alt="whatsapp logo"
+            height="36px"
+          />
+        </div>
+
+        <div>
+          <img
+            src="square-x-twitter-brands-solid-full.svg"
+            alt="X-twitter logo"
+            height="36px"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="links">
+      <div class="column">
+        <ul>
+          <li>Home</li>
+          <li>Shop</li>
+          <li>Blog</li>
+          <li>About</li>
+          <li>Contact</li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <ul>
+          <li>FAQ</li>
+          <li>Shipping and Delivery</li>
+          <li>Return and Refunds</li>
+          <li>Order Tracking</li>
+          <li>Contact Support</li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <ul>
+          <li>Privacy Policy</li>
+          <li>Terms and Conditions</li>
+          <li>Cookie Policy</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="reserve">
+    <p>&copy; 2026 Elispot. All rights reserved.</p>
+  </section>
+</footer>
+
+<!-- Modals -->
+<div class="menu">
+  <ul>
+    <li>Home</li>
+    <li>Shop</li>
+    <li>Blog</li>
+    <li>About</li>
+    <li>Contact</li>
+  </ul>
+</div>
