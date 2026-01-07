@@ -23,17 +23,24 @@
   </div>
 
   <div class="functionalities">
-    <div class="search">
+    <div class="search" (click)="closeMenu()">
       <img
         src="search_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
         alt="search button"
       />
     </div>
 
-    <div class="cart">
+    <div class="cart" (click)="closeMenu()">
       <img
         src="shopping_cart_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
         alt="cart button"
+      />
+    </div>
+
+    <div class="account" (click)="closeMenu()">
+      <img
+        src="account_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
+        alt="account button"
       />
     </div>
   </div>
@@ -112,12 +119,64 @@
 </footer>
 
 <!-- Modals -->
+
+<div class="dark-background" (click)="closeMenu()"></div>
+
 <div class="menu">
   <ul>
-    <li>Home</li>
-    <li>Shop</li>
-    <li>Blog</li>
-    <li>About</li>
-    <li>Contact</li>
+    <li (click)="closeMenu()">
+      <div class="image">
+        <img
+          src="home_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
+          alt="home icon"
+        />
+      </div>
+
+      <p>Home</p>
+    </li>
+
+    <li (click)="closeMenu()">
+      <div class="image">
+        <img
+          src="storefront_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
+          alt="shop icon"
+        />
+      </div>
+
+      <p>Shop</p>
+    </li>
+
+    <li (click)="closeMenu()">
+      <div class="image">
+        <img
+          src="news_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
+          alt="blog icon"
+        />
+      </div>
+
+      <p>Blog</p>
+    </li>
+
+    <li (click)="closeMenu()">
+      <div class="image">
+        <img
+          src="info_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
+          alt="about icon"
+        />
+      </div>
+
+      <p>About</p>
+    </li>
+
+    <li (click)="closeMenu()">
+      <div class="image">
+        <img
+          src="add_call_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
+          alt="contact icon"
+        />
+      </div>
+
+      <p>Contact</p>
+    </li>
   </ul>
 </div>

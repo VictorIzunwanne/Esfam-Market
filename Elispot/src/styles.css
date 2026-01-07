@@ -26,6 +26,11 @@ html {
   transition: all 0.25s;
 }
 
+::selection {
+  background-color: var(--other);
+  color: var(--background);
+}
+
 ul {
   list-style: none;
 }

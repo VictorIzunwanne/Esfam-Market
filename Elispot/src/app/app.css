@@ -79,7 +79,8 @@ header {
 }
 
 .search,
-.cart {
+.cart,
+.account {
   block-size: 100%;
   padding: 0.5rem;
   display: flex;
@@ -162,6 +163,20 @@ footer > section {
 }
 
 /* Modal */
+.dark-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0.5;
+  display: none;
+}
+
+.show {
+  display: block;
+}
 
 .menu {
   position: fixed;
@@ -176,6 +191,10 @@ footer > section {
 }
 
 @media screen and (min-width: 700px) {
+  .dark-background {
+    display: none !important;
+  }
+
   .menu {
     inline-size: 0 !important;
   }
@@ -190,11 +209,13 @@ footer > section {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  gap: 1rem;
 }
 
 .menu li {
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   cursor: pointer;
 }
 

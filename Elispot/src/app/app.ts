@@ -12,9 +12,21 @@ export class App {
 
   openMenu() {
     const menu = document.querySelector('.menu');
+    const darkBg = document.querySelector('.dark-background');
 
-    if (menu) {
+    if (menu && darkBg) {
       menu.classList.toggle('open');
+      darkBg.classList.toggle('show');
+    }
+  }
+
+  closeMenu() {
+    const menu = document.querySelector('.menu');
+    const darkBg = document.querySelector('.dark-background');
+
+    if (menu && darkBg) {
+      menu.classList.remove('open');
+      darkBg.classList.remove('show');
     }
   }
 
