@@ -19,7 +19,7 @@ export class HomeComponent {
 
   async checkIfUserIsLoggedIn() {
     try {
-      const isLoggedIn = await fetch('https://esfam-market.onrender.com/api/users/me', {
+      const isLoggedIn = await fetch('http://localhost:3000/api/users/me', {
         credentials: 'include',
       });
 
@@ -33,7 +33,7 @@ export class HomeComponent {
 
   async latestProducts() {
     try {
-      const response = await fetch('https://esfam-market.onrender.com/api/latest-products');
+      const response = await fetch('http://localhost:3000/api/latest-products');
       if (!response.ok) throw new Error(response.status.toString());
       this.products = await response.json();
     } catch (error) {
@@ -71,7 +71,7 @@ export class HomeComponent {
       };
 
       const sendProductToCart = await fetch(
-        `https://esfam-market.onrender.com/api/users/${userName}/cart`,
+        `http://localhost:3000/api/users/${userName}/cart`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -99,7 +99,7 @@ export class HomeComponent {
 
     if (productId) {
       const product = await fetch(
-        `https://esfam-market.onrender.com/api/products/specific/${productId.innerHTML}`,
+        `http://localhost:3000/api/products/specific/${productId.innerHTML}`,
         {
           credentials: 'include',
         }
@@ -132,7 +132,7 @@ export class HomeComponent {
         }
 
         const thisUser = await fetch(
-          `https://esfam-market.onrender.com/api/users/${user}/getCart`,
+          `http://localhost:3000/api/users/${user}/getCart`,
           {
             credentials: 'include',
           }
@@ -157,7 +157,7 @@ export class HomeComponent {
   async similarProducts(item: any) {
     try {
       const similarProduct = await fetch(
-        `https://esfam-market.onrender.com/api/products/${item.category}`
+        `http://localhost:3000/api/products/${item.category}`
       );
 
       if (!similarProduct.ok) {
@@ -364,7 +364,7 @@ export class HomeComponent {
 
       try {
         const submitReview = await fetch(
-          `https://esfam-market.onrender.com/api/products/${productId}/reviews`,
+          `http://localhost:3000/api/products/${productId}/reviews`,
           {
             method: 'POST',
             headers: {

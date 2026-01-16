@@ -1,0 +1,14 @@
+section {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	block-size: 200px;
+	padding: 2rem;
+}
+
+section h1 {
+	color: grey;
+}

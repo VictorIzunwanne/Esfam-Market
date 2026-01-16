@@ -14,11 +14,11 @@
 
   <div class="nav-links">
     <ul>
-      <li>Home</li>
-      <li>Shop</li>
-      <li>Blog</li>
-      <li>About</li>
-      <li>Contact</li>
+      <li routerLink="/">Home</li>
+      <li routerLink="/shop">Shop</li>
+      <li routerLink="/blog">Blog</li>
+      <li routerLink="/about">About</li>
+      <li routerLink="/contact">Contact</li>
     </ul>
   </div>
 
@@ -65,19 +65,22 @@
         </div>
 
         <div>
-          <img
-            src="square-whatsapp-brands-solid-full.svg"
-            alt="whatsapp logo"
-            height="36px"
-          />
+          <a href="https://wa.me/+2349019165483" title="Message us on whatsapp"
+            ><img
+              src="square-whatsapp-brands-solid-full.svg"
+              alt="whatsapp logo"
+              height="36px"
+          /></a>
         </div>
 
         <div>
-          <img
-            src="square-x-twitter-brands-solid-full.svg"
-            alt="X-twitter logo"
-            height="36px"
-          />
+          <a href="https://x.com/IVictorae" title="Follow us on X (Twitter)">
+            <img
+              src="square-x-twitter-brands-solid-full.svg"
+              alt="X-twitter logo"
+              height="36px"
+            />
+          </a>
         </div>
       </div>
     </div>
@@ -85,11 +88,11 @@
     <div class="links">
       <div class="column">
         <ul>
-          <li>Home</li>
-          <li>Shop</li>
-          <li>Blog</li>
-          <li>About</li>
-          <li>Contact</li>
+          <li routerLink="/">Home</li>
+          <li routerLink="/shop">Shop</li>
+          <li routerLink="/blog">Blog</li>
+          <li routerLink="/about">About</li>
+          <li routerLink="/contact">Contact</li>
         </ul>
       </div>
 
@@ -124,7 +127,7 @@
 
 <div class="menu">
   <ul>
-    <li (click)="closeMenu()">
+    <li (click)="closeMenu()" routerLink="/">
       <div class="image">
         <img
           src="home_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
@@ -135,7 +138,7 @@
       <p>Home</p>
     </li>
 
-    <li (click)="closeMenu()">
+    <li (click)="closeMenu()" routerLink="/shop">
       <div class="image">
         <img
           src="storefront_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
@@ -146,7 +149,7 @@
       <p>Shop</p>
     </li>
 
-    <li (click)="closeMenu()">
+    <li (click)="closeMenu()" routerLink="/blog">
       <div class="image">
         <img
           src="news_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
@@ -157,7 +160,7 @@
       <p>Blog</p>
     </li>
 
-    <li (click)="closeMenu()">
+    <li (click)="closeMenu()" routerLink="/about">
       <div class="image">
         <img
           src="info_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
@@ -168,7 +171,7 @@
       <p>About</p>
     </li>
 
-    <li (click)="closeMenu()">
+    <li (click)="closeMenu()" routerLink="/contact">
       <div class="image">
         <img
           src="add_call_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"

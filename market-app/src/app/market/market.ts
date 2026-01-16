@@ -33,7 +33,7 @@ export class Market {
 
   async menProducts() {
     try {
-      const response = await fetch('https://esfam-market.onrender.com/api/products/men');
+      const response = await fetch('http://localhost:3000/api/products/men');
       if (!response.ok) {
         throw new Error(response.status.toString());
       }
@@ -45,7 +45,7 @@ export class Market {
 
   async womenProducts() {
     try {
-      const response = await fetch('https://esfam-market.onrender.com/api/products/women');
+      const response = await fetch('http://localhost:3000/api/products/women');
       if (!response.ok) {
         throw new Error(response.status.toString());
       }
@@ -58,7 +58,7 @@ export class Market {
   async fashionProducts() {
     try {
       const response = await fetch(
-        'https://esfam-market.onrender.com/api/products/fashion'
+        'http://localhost:3000/api/products/fashion'
       );
       if (!response.ok) {
         throw new Error(response.status.toString());
@@ -72,7 +72,7 @@ export class Market {
   async similarProducts(item: any) {
     try {
       const similarProduct = await fetch(
-        `https://esfam-market.onrender.com/api/products/${item.category}`
+        `http://localhost:3000/api/products/${item.category}`
       );
 
       if (!similarProduct.ok) {
@@ -91,7 +91,7 @@ export class Market {
   async electronicProducts() {
     try {
       const response = await fetch(
-        'https://esfam-market.onrender.com/api/products/electronic'
+        'http://localhost:3000/api/products/electronic'
       );
       if (!response.ok) {
         throw new Error(response.status.toString());
@@ -104,7 +104,7 @@ export class Market {
 
   async edibleProducts() {
     try {
-      const response = await fetch('https://esfam-market.onrender.com/api/products/edible');
+      const response = await fetch('http://localhost:3000/api/products/edible');
       if (!response.ok) {
         throw new Error(response.status.toString());
       }
@@ -117,7 +117,7 @@ export class Market {
   async schoolMaterials() {
     try {
       const response = await fetch(
-        'https://esfam-market.onrender.com/api/products/school-material'
+        'http://localhost:3000/api/products/school-material'
       );
       if (!response.ok) {
         throw new Error(response.status.toString());
@@ -299,7 +299,7 @@ export class Market {
 
       try {
         const submitReview = await fetch(
-          `https://esfam-market.onrender.com/api/products/${productId}/reviews`,
+          `http://localhost:3000/api/products/${productId}/reviews`,
           {
             method: 'POST',
             headers: {
@@ -323,7 +323,7 @@ export class Market {
 
   async checkIfUserIsLoggedIn() {
     try {
-      const isLoggedIn = await fetch('https://esfam-market.onrender.com/api/users/me', {
+      const isLoggedIn = await fetch('http://localhost:3000/api/users/me', {
         credentials: 'include',
       });
 
@@ -363,7 +363,7 @@ export class Market {
       };
 
       const sendProductToCart = await fetch(
-        `https://esfam-market.onrender.com/api/users/${userName}/cart`,
+        `http://localhost:3000/api/users/${userName}/cart`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -398,7 +398,7 @@ export class Market {
         }
 
         const thisUser = await fetch(
-          `https://esfam-market.onrender.com/api/users/${user}/getCart`,
+          `http://localhost:3000/api/users/${user}/getCart`,
           {
             credentials: 'include',
           }

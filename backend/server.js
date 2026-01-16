@@ -11,7 +11,7 @@ dotenv.config();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://esfam-market.netlify.app",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

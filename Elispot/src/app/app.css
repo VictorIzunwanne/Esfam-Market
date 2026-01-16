@@ -129,7 +129,7 @@ footer > section {
   gap: 0.5rem;
 }
 
-.socials > div {
+.socials a {
   cursor: pointer;
   display: flex;
   align-items: center;

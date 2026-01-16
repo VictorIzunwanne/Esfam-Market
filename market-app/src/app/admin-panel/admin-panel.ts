@@ -34,7 +34,7 @@ export class AdminPanel {
 
   async fetchAdminName() {
     try {
-      const admin = await fetch('https://esfam-market.onrender.com/api/admin-data');
+      const admin = await fetch('http://localhost:3000/api/admin-data');
 
       if (!admin.ok) {
         throw new Error(admin.status.toString());
@@ -51,7 +51,7 @@ export class AdminPanel {
 
   async fufilReq(adminReq: string) {
     try {
-      const result = await fetch(`https://esfam-market.onrender.com/api/${adminReq}`);
+      const result = await fetch(`http://localhost:3000/api/${adminReq}`);
 
       if (!result.ok) {
         throw new Error(result.status.toString());

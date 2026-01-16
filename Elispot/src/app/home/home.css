@@ -1,3 +1,7 @@
+section {
+  margin: 1rem 0;
+}
+
 .cta {
   padding: 2rem 1rem;
   background-color: var(--accent);
@@ -61,6 +65,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  block-size: 50px;
 }
 
 .header p {
@@ -88,44 +93,6 @@ h3 {
   display: none;
 }
 
-.product-card {
-  min-inline-size: 150px;
-  block-size: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.product-image {
-  background-color: lightblue;
-  flex: 1;
-}
-
-.product-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.product-price {
-  font-weight: 700;
-}
-
-.product-details button {
-  inline-size: 100%;
-  block-size: 30px;
-  background-color: var(--other);
-  color: var(--background);
-  cursor: pointer;
-  border: none;
-}
-
-.product-details button:hover {
-  border: 1px solid var(--other);
-  background-color: var(--background);
-  color: var(--primary);
-}
-
 .blog-container {
   display: flex;
   gap: 1rem;
@@ -136,7 +103,6 @@ h3 {
 .blog-card {
   padding: 1rem;
   background-color: var(--accent);
-  max-inline-size: 700px;
   min-inline-size: 300px;
   flex-grow: 1;
   block-size: 400px;

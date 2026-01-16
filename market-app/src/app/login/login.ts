@@ -32,7 +32,7 @@ export class Login {
       };
 
       try {
-        const userExist = await fetch('https://esfam-market.onrender.com/api/users/login', {
+        const userExist = await fetch('http://localhost:3000/api/users/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export class Login {
           backendMessage.style.color = 'green';
 
           const userDataRes = await fetch(
-            'https://esfam-market.onrender.com/api/users/me',
+            'http://localhost:3000/api/users/me',
             {
               credentials: 'include',
             }

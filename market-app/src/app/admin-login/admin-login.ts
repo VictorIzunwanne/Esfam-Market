@@ -40,7 +40,7 @@ export class AdminLogin {
       loginButton['disabled'] = true;
 
       try {
-        const admin = await fetch('https://esfam-market.onrender.com/api/admins', {
+        const admin = await fetch('http://localhost:3000/api/admins', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

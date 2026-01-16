@@ -55,7 +55,7 @@ export class Signup {
 
       try {
         const signupResult = await fetch(
-          'https://esfam-market.onrender.com/api/users/signup',
+          'http://localhost:3000/api/users/signup',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

@@ -47,3 +47,78 @@ body {
   background-color: var(--background);
   color: var(--primary);
 }
+
+.product-card {
+  min-inline-size: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-image {
+  background-color: lightblue;
+  min-block-size: 160px;
+  flex: 1;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-price {
+  font-weight: 700;
+}
+
+.product-details button {
+  inline-size: 100%;
+  block-size: 30px;
+  background-color: var(--other);
+  color: var(--background);
+  cursor: pointer;
+  border: none;
+}
+
+.pagnation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.pagnation-container button {
+  block-size: 2rem;
+}
+
+.previous-button > button,
+.next-button > button {
+  inline-size: 5rem;
+  background-color: var(--background);
+  color: var(--primary);
+  border: 1px solid var(--other);
+  cursor: pointer;
+}
+
+.pagnation {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pages {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.pages button {
+  inline-size: 2rem;
+  border: none;
+  background-color: var(--background);
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.active-button {
+  color: var(--other);
+}
